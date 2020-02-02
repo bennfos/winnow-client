@@ -1,0 +1,66 @@
+.bookList__header {
+    margin: 10% 10% 2% 10%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.addBookModal {
+    margin: 20px 0 0 0;
+}
+
+.bookList__container {
+display: flex;
+flex-direction: column;
+align-content: center;
+}
+
+.bookList__contents {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 0 75px 0;
+}
+
+.bookCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fdfefe;
+    min-width: 260px;
+    max-width: 260px;
+    min-height: 330px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    margin: 20px;
+    position: relative;
+}
+
+.bookCard__title {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.editAndDeleteBook {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-end;
+  margin: 40px 0 0 0;
+}
+
+.deleteBook {
+  align-self: center;
+  justify-self: center;
+}
+
+.ellipses {
+    margin: 8px;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+}

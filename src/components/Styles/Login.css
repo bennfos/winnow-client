@@ -1,0 +1,84 @@
+.loginForm {
+    display: flex;
+    justify-content: center;
+    margin: 15px 15px 0 15px;
+
+}
+.auth {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    margin: 15px 0 75px 0;
+
+}
+
+.signIn {
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px 0 5px 0;
+    text-align: center;
+}
+
+
+
+.center {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    opacity: 0.6;
+    width: 250px;
+}
+
+h4 {
+    margin: 15px;
+
+}
+
+.or {
+    display:flex;
+    justify-content: center;;
+    justify-self: center;
+    width: 40px;
+}
+
+h6 {
+    margin: 5px 5px 0 5px;
+}
+
+.registerbtn {
+    align-self: center;
+
+}
+
+.login__heading {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 15px 25px;
+}
+
+.login__description--1 {
+    max-width: 370px;
+}
+
+.login__description--2 {
+    max-width: 370px;
+}
+
+
+.logoLogin {
+    max-width: 60px;
+    max-height: 60px;
+    margin: 12px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

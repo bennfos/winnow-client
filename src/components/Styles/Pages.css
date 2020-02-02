@@ -1,0 +1,140 @@
+.quoteList__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 15px 30px;
+
+}
+
+.dayInt__button {
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.sidebar__menu {
+    position: fixed;
+    top: 38px;
+}
+
+.pageSelect__button {
+    height: 35px;
+    padding: 0;
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+
+}
+
+.delete {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
+.editWithPipe {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+h1 {
+  align-self: center;
+}
+
+.sidebar {
+    height: 20px;
+    padding: 45px 0 0 0;
+}
+
+.quoteList__contents {
+    display: flex;
+    flex-direction: column;
+}
+
+.quoteList__header {
+    margin: 10% 10% 0 10%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.addRandomQuoteModal__container {
+    align-self: center;
+}
+
+.addQuote__button {
+    margin: 20px 0 0 0;
+}
+
+.quoteCard {
+    margin: 20px 0;
+}
+
+.thoughtList {
+    justify-self: flex-end;
+}
+
+.thoughtList__contents {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 75px 0;
+    align-items: center;
+}
+
+.thoughtCard__container {
+    align-content: flex-end;
+    min-width: 100%;
+}
+
+.thoughtCard--background {
+    background-color: #fdfefe;
+    margin: 10px 0 0 0;
+    min-width: 100%;
+}
+
+.thoughtCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 75px;
+    min-width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.quoteCard__contents {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.quoteCard__container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 46px;
+    max-height: 46px;
+}
+
+.thoughtImage {
+    align-self: center;
+}
+
+
+
+.editAndDelete {
+  display: flex;
+  justify-content: center;
+}
+
