@@ -1,6 +1,6 @@
 import { createAuthHeaders } from '../API/userManager';
 
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://winnow-rails-api.herokuapp.com/api/v1"
 export default {
 
     //All methods that fetch the book data, with varying parameters and/or methods
