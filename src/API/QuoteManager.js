@@ -1,7 +1,7 @@
 import fetchJsonp from 'fetch-jsonp'
 import { createAuthHeaders } from '../API/userManager';
 
-const baseUrl = "/api/v1"
+const baseUrl = "https://winnow-rails-api.herokuapp.com/api/v1"
 
 export default {
 
@@ -19,8 +19,8 @@ export default {
         return fetch(`${baseUrl}/quotes?pageId=${pageId}`, {
             headers: authHeader
         })
-        .then(response => response.json());       
-    },    
+        .then(response => response.json());
+    },
     getQuote(id) {
         const authHeader = createAuthHeaders();
         return fetch(`${baseUrl}/quotes/${id}`, {
@@ -43,7 +43,7 @@ export default {
             headers: authHeader,
             body: JSON.stringify(editedQuote)
         })
-    },    
+    },
     deleteQuote(id) {
         const authHeader = createAuthHeaders();
         return fetch(`${baseUrl}/quotes/${id}`,
@@ -51,7 +51,7 @@ export default {
         headers: authHeader,
         }).then(response => response.json())
     },
-    getRandomQuote () {      
+    getRandomQuote () {
         return fetchJsonp('http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en',
             {jsonpCallback: 'jsonp'})
             .then(function(response) {

@@ -26,7 +26,7 @@ export default {
             method: "POST",
             body: JSON.stringify(newBook)
         })
-        // .then(response => response.json())
+        .then(response => response.json())
     },
     editBook(id, editedBook) {
         const authHeader = createAuthHeaders();
