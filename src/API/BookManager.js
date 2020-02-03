@@ -20,9 +20,9 @@ export default {
         .then(response => response.json())
     },
     postBook(newBook) {
-        const authHeader = createAuthHeaders();
+        // const authHeader = createAuthHeaders();
         return fetch(`${baseUrl}/books`, {
-            headers: authHeader,
+            headers: {'Content-Type': 'application/json'},
             method: "POST",
             body: JSON.stringify(newBook)
         })
