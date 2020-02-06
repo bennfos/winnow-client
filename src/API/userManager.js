@@ -13,11 +13,11 @@ export const getUser = () => JSON.parse(localStorage.getItem('user'));
 export const removeUser = () => localStorage.removeItem('user');
 
 export const login = (user) => {
-  return fetch(`${baseUrl}/auth/login`, {
+  return fetch(`${baseUrl}/login`, {
     method: 'POST',
     body: JSON.stringify(user),
     headers: {
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     }
   })
@@ -26,13 +26,13 @@ export const login = (user) => {
 }
 
 export const register = (user) => {
-  return fetch(`${baseUrl}/auth/register`, {
+  return fetch(`${baseUrl}/users`, {
     method: 'POST',
-    body: JSON.stringify(user),
     headers: {
-      Accept: 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
-    }
+    },
+    body: JSON.stringify(user)
   })
     .then(response => response.json())
     .then(handleAuthResponse)
