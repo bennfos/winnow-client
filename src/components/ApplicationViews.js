@@ -43,13 +43,13 @@ export default class ApplicationViews extends Component {
             <Route
             //NOT EXACT PATH  so that only pages include the month select top nav bar
                 path="/books/:bookId(\d+)" render={props => {
-                    if (this.isAuthenticated()) {
+                    // if (this.isAuthenticated()) {
                     return <PageMain
                         bookId={parseInt(props.match.params.bookId)}
                         {...this.props}
                         {...props}/>
-                    }
-                    return <Redirect to="/" />
+                    // }
+                    // return <Redirect to="/" />
                 }}
             />
 
@@ -61,12 +61,12 @@ export default class ApplicationViews extends Component {
 
           <Route
           exact path="/search" render={props => {
-              if (this.isAuthenticated()) {
+              // if (this.isAuthenticated()) {
               return <Search
                 {...props}
                 />
-              }
-              return <Redirect to="/" />
+              // }
+              // return <Redirect to="/" />
           }}
           />
 
