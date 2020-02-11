@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import { Icon, Button } from 'semantic-ui-react'
 import BookDataManager from '../../API/BookManager'
 
-class BookEditModal extends Component {
+class EditBookModal extends Component {
 
 //Defines initial state
     state = {
@@ -115,4 +115,4 @@ class BookEditModal extends Component {
     }
 }
 
-export default BookEditModal
+export default EditBookModal
