@@ -13,9 +13,9 @@ export default {
         .then(response => response.json())
     },
     postPage(newPage) {
-        const authHeader = createAuthHeaders();
+        //const authHeader = createAuthHeaders();
         return fetch(`${baseUrl}/pages`, {
-            headers: authHeader,
+            headers: {"Content-Type": "application/json"},
             method: "POST",
             body: JSON.stringify(newPage)
         }).then(response => response.json())
