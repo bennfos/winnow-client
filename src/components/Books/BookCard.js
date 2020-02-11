@@ -94,7 +94,7 @@ class BookCard extends Component {
    }
 
    componentDidMount () {
-    if (this.props.editMode == true) {
+    if (this.props.editMode === true) {
       this.toggle()
     }
    }

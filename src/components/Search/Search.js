@@ -32,7 +32,7 @@ class Search extends Component {
                 || quote.quoteAuthor.toLowerCase().includes(this.state.searchInput.toLowerCase())
                 || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
                 || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
-                if (this.state.loadingStatus == false ) {
+                if (this.state.loadingStatus === false ) {
                     this.setState({ searchResults: searchResults})
                 }
     }

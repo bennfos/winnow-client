@@ -30,7 +30,7 @@ export default {
     },
     checkForPage(bookId, month, day) {
         const authHeader = createAuthHeaders();
-        return fetch(`${baseUrl}/pages?bookId=${bookId}&month=${month}&day=${day}`, {
+        return fetch(`${baseUrl}/pages/${bookId}/${month}/${day}`, {
             headers: authHeader
         }).then(response => response.json());
     }
