@@ -92,7 +92,7 @@ class PageMain extends Component {
 
             //then post quote for that page
                 .then(quote => {
-                    console.log("got random quote:", quote.quote_textt)
+                    console.log("got random quote:", quote.quote_text)
                     const initialQuote = {
                         page_id: this.state.page_id,
                         quote_text: quote.quote_text,
@@ -173,7 +173,7 @@ class PageMain extends Component {
         //post new quote object to the database
         return QuoteManager.postQuote(newQuote)
             .then(quote => {
-                console.log("quote posted:", quote.quote_textt)
+                console.log("quote posted:", quote.quote_text)
               //post the new pageQuote to the database
                 QuoteManager.getPageQuotes(page_id)
                 .then(quotes => {

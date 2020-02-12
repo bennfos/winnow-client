@@ -9,7 +9,7 @@ class EditQuoteModal extends Component {
 
 //Defines initial state
     state = {
-        quote_textt: "",
+        quote_text: "",
         quote_author: "",
         loadingStatus: false,
         modal: false
@@ -38,7 +38,7 @@ class EditQuoteModal extends Component {
         event.preventDefault();
 
     //Validates user input
-        if (this.state.quote_textt === ""
+        if (this.state.quote_text === ""
         ) {
             alert("please provide the quote text");
         } else {
@@ -90,7 +90,7 @@ class EditQuoteModal extends Component {
 
                             <div className="editBookForm">
                                 <Input onChange={this.handleFieldChange} type="textarea"
-                                    id="quote_textt"
+                                    id="quote_text"
                                     value={this.state.quote_text}
                                     required
                                     autoFocus=""

@@ -7,7 +7,7 @@ class AddQuoteModal extends Component {
 
 //Defines initial state
     state = {
-        quote_texttt: "",
+        quote_text: "",
         quote_author: "",
         modal: false,
         loadingStatus: false
@@ -31,7 +31,7 @@ class AddQuoteModal extends Component {
     constructNewQuote = () => {
 
     //Validates user input
-        if (this.state.quote_texttt === "") {
+        if (this.state.quote_text === "") {
             alert("please provide the quote text");
         } else {
             this.setState({ loadingStatus: true });
@@ -41,7 +41,7 @@ class AddQuoteModal extends Component {
         //creates a new object for the quote that is to be added,
             const newQuote = {
                 page_id: this.props.page_id,
-                quote_texttt: this.statquote_textxtxt,
+                quote_text: this.statquote_text,
                 quote_author: this.state.quote_author,
             };
             console.log(newQuote);
@@ -59,7 +59,7 @@ class AddQuoteModal extends Component {
 //becuase the quote text and author were already in state.
     resetQuoteState = () => {
         this.setState({
-            quote_texttt: "",
+            quote_text: "",
             quote_author: ""
         })
     }
@@ -84,7 +84,7 @@ class AddQuoteModal extends Component {
                         <ModalBody>
                           <Input onChange={this.handleFieldChange}
                                   type="textarea"
-                                  id="quote_texttt"
+                                  id="quote_text"
                                   placeholder="text"
                                   required
                                   autoFocus={true}
