@@ -36,6 +36,7 @@ class BookCard extends Component {
             thought: ""
         };
         console.log("created page for", newPage.month, newPage.day)
+        console.log("page: ", newPage)
         //post the page object to the database, THEN set state with that page's id, and push user to that page's view
         PageManager.postPage(newPage)
         .then(newPage => {

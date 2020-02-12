@@ -20,6 +20,7 @@ export default {
             body: JSON.stringify(newPage)
         })
         .then(response => response.json())
+        .catch(error => console.log(error))
     },
     editPage(id, editedPage) {
         const authHeader = createAuthHeaders();
