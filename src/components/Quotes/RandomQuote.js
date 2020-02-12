@@ -18,8 +18,8 @@ class RandomQuote extends Component {
         QuoteDataManager.getRandomQuote()
             .then(quote => {
                 this.setState({
-                    quote_text: quote.quoteText,
-                    quote_author: quote.quoteAuthor
+                    quoteText: quote.quoteText,
+                    quoteAuthor: quote.quoteAuthor
                 })
         })
     }

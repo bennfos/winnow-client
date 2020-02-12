@@ -30,8 +30,8 @@ class QuoteCard extends Component {
       QuoteManager.getRandomQuote()
         .then(quoteObj => {
             this.setState({
-                randomQuoteText: quoteObj.quote_text,
-                randomQuoteAuthor: quoteObj.quote_author
+                randomQuoteText: quoteObj.quoteText,
+                randomQuoteAuthor: quoteObj.quoteAuthor
             })
         })
   }
