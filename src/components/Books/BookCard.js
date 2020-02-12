@@ -40,7 +40,7 @@ class BookCard extends Component {
         //post the page object to the database, THEN set state with that page's id, and push user to that page's view
         PageManager.postPage(newPage)
         .then(newPage => {
-            console.log("posted new page", newPage.id, newPage.month, newPage.day)
+            console.log("posted new page", newPage)
             this.setState({
                 pageId: newPage.id
             })
