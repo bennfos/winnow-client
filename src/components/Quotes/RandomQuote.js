@@ -9,8 +9,8 @@ import '../Styles/RandomQuote.css'
 
 class RandomQuote extends Component {
     state = {
-        quote_text: "",
-        quote_author: "",
+        quoteText: "",
+        quoteAuthor: "",
         fadeIn: true
       };
 
@@ -18,8 +18,8 @@ class RandomQuote extends Component {
         QuoteDataManager.getRandomQuote()
             .then(quote => {
                 this.setState({
-                    quote_text: quote.quote_text,
-                    quote_author: quote.quote_author
+                    quote_text: quote.quoteText,
+                    quote_author: quote.quoteAuthor
                 })
         })
     }
@@ -60,11 +60,11 @@ class RandomQuote extends Component {
                 </div>
 
                 <Fade in={this.state.fadeIn} tag='h3' timeout={600}>
-                    {this.state.quote_text}
+                    {this.state.quoteText}
                 </Fade>
                 <div className="author">
                     <Fade in={this.state.fadeIn}  tag='h5' timeout={600}>
-                        {this.state.quote_author}
+                        {this.state.quoteAuthor}
                     </Fade>
                 </div>
 

@@ -51,6 +51,7 @@ export default {
         {method: "DELETE",
         headers: authHeader,
         }).then(response => response.json())
+        .catch(error => console.log(error))
     },
     getRandomQuote () {
         return fetchJsonp('http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en',
