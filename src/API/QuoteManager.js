@@ -35,6 +35,7 @@ export default {
             method: "POST",
             body: JSON.stringify(newQuote)
         }).then(response => response.json())
+        .catch(error => console.log(error))
     },
     editQuote (id, editedQuote) {
         const authHeader = createAuthHeaders();
