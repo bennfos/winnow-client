@@ -8,8 +8,8 @@ import { Button } from 'semantic-ui-react'
 
 class AddRandomQuoteModal extends Component {
     state = {
-        quoteText: "",
-        quoteAuthor: "",
+        quote_text: "",
+        quote_author: "",
         modal: false
       };
 
@@ -22,7 +22,7 @@ class AddRandomQuoteModal extends Component {
       handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
-        this.setState(stateToChange);       
+        this.setState(stateToChange);
     };
 
 
@@ -30,8 +30,8 @@ class AddRandomQuoteModal extends Component {
             QuoteManager.getRandomQuote()
                 .then(quote => {
                     this.setState({
-                        quoteText: quote.quoteText,
-                        quoteAuthor: quote.quoteAuthor
+                        quote_text: quote.quote_text,
+                        quote_author: quote.quote_author
                     })
             })
         }
@@ -39,21 +39,21 @@ class AddRandomQuoteModal extends Component {
         constructNewRandomQuote = event => {
             this.setState({ loadingStatus: true });
         //creates a new object for the quote that is to be added,
-            const newRandomQuote = {               
-                pageId: this.props.pageId,
-                quoteText: this.state.quoteText,
-                quoteAuthor: this.state.quoteAuthor,              
+            const newRandomQuote = {
+                page_id: this.props.page_id,
+                quote_text: this.state.quote_text,
+                quote_author: this.state.quote_author,
             };
         //posts the object to the database, gets all pageQuotes, and rerenders (see PageMain)
-            this.props.addQuote(newRandomQuote, this.props.pageId)
+            this.props.addQuote(newRandomQuote, this.props.page_id)
         //closes the modal
             .then(this.toggle)
         }
 
         resetQuoteState = () => {
             this.setState({
-                quoteText: "",
-                quoteAuthor: ""
+                quote_text: "",
+                quote_author: ""
             })
         }
 
@@ -98,14 +98,14 @@ class AddRandomQuoteModal extends Component {
                                 <Input onChange={this.handleFieldChange}
                                         disabled
                                         type="textarea"
-                                        id="quoteText"
-                                        value={this.state.quoteText}
+                                        id="quote_text"
+                                        value={this.state.quote_text}
                                     /><br/>
                                 <Input onChange={this.handleFieldChange}
                                         disabled
                                         type="text"
-                                        id="quoteAuthor"
-                                        value={this.state.quoteAuthor}
+                                        id="quote_author"
+                                        value={this.state.quote_author}
                                     /><br/>
                             </ModalBody>
                         <ModalFooter>

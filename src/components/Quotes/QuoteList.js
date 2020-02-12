@@ -16,13 +16,13 @@ class QuoteList extends Component {
 
 //when component mounts, update state of pageQuotes in PageMain
     componentDidMount() {
-      this.props.renderPageQuotes(this.props.pageId)
+      this.props.renderPageQuotes(this.props.page_id)
       }
 
-//When component receives new pageId in props (i.e., page is changed) from PageMain, update state in PageMain to cause a rerender of QuoteList
+//When component receives new page_id in props (i.e., page is changed) from PageMain, update state in PageMain to cause a rerender of QuoteList
     componentDidUpdate(prevProps) {
-      if (this.props.pageId !== prevProps.pageId) {
-        this.props.renderPageQuotes(this.props.pageId)
+      if (this.props.page_id !== prevProps.page_id) {
+        this.props.renderPageQuotes(this.props.page_id)
         this.setState({
           quotes: this.props.quotes
         })
@@ -58,7 +58,7 @@ class QuoteList extends Component {
                 <QuoteCard
                     key={quote.id}
                     quote={quote}
-                    pageId={this.props.pageId}
+                    page_id={this.props.page_id}
                     {...this.props}/>
 
               ))}

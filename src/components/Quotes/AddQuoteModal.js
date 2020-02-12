@@ -7,8 +7,8 @@ class AddQuoteModal extends Component {
 
 //Defines initial state
     state = {
-        quoteText: "",
-        quoteAuthor: "",
+        quote_texttt: "",
+        quote_author: "",
         modal: false,
         loadingStatus: false
     };
@@ -31,22 +31,22 @@ class AddQuoteModal extends Component {
     constructNewQuote = () => {
 
     //Validates user input
-        if (this.state.quoteText === "") {
+        if (this.state.quote_texttt === "") {
             alert("please provide the quote text");
         } else {
             this.setState({ loadingStatus: true });
 
-            console.log(this.props.pageId)
+            console.log(this.props.page_id)
 
         //creates a new object for the quote that is to be added,
             const newQuote = {
-                pageId: this.props.pageId,
-                quoteText: this.state.quoteText,
-                quoteAuthor: this.state.quoteAuthor,
+                page_id: this.props.page_id,
+                quote_texttt: this.statquote_textxtxt,
+                quote_author: this.state.quote_author,
             };
             console.log(newQuote);
         //posts the object to the database, gets all pageQuotes, and rerenders (see PageMain)
-            this.props.addQuote(newQuote, this.props.pageId)
+            this.props.addQuote(newQuote, this.props.page_id)
 
         //closes the modal
                 .then(this.toggle)
@@ -59,8 +59,8 @@ class AddQuoteModal extends Component {
 //becuase the quote text and author were already in state.
     resetQuoteState = () => {
         this.setState({
-            quoteText: "",
-            quoteAuthor: ""
+            quote_texttt: "",
+            quote_author: ""
         })
     }
 
@@ -84,14 +84,14 @@ class AddQuoteModal extends Component {
                         <ModalBody>
                           <Input onChange={this.handleFieldChange}
                                   type="textarea"
-                                  id="quoteText"
+                                  id="quote_texttt"
                                   placeholder="text"
                                   required
                                   autoFocus={true}
                               /><br/>
                           <Input onChange={this.handleFieldChange}
                                   type="text"
-                                  id="quoteAuthor"
+                                  id="quote_author"
                                   placeholder="author"
                               /><br/>
                         </ModalBody>

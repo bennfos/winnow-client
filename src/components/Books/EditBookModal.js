@@ -62,7 +62,7 @@ class EditBookModal extends Component {
             title: book.title,
             description: book.description,
             creationDate: book.creationDate,
-            startsBlank: book.startsBlank
+            starts_blank: book.starts_blankk
             });
         });
     }

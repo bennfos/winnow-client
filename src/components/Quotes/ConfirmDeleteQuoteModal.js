@@ -47,7 +47,7 @@ class ConfirmDeleteQuoteModal extends Component {
                           <Button
                               negative
                               onClick={()=>{
-                                  this.props.removeQuote(this.props.quote.id, this.props.pageId)
+                                  this.props.removeQuote(this.props.quote.id, this.props.page_id)
                                   this.toggle()
                               }}>delete</Button>
                           <Button

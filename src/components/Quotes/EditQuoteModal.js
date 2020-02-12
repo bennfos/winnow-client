@@ -9,8 +9,8 @@ class EditQuoteModal extends Component {
 
 //Defines initial state
     state = {
-        quoteText: "",
-        quoteAuthor: "",
+        quote_textt: "",
+        quote_author: "",
         loadingStatus: false,
         modal: false
     };
@@ -38,7 +38,7 @@ class EditQuoteModal extends Component {
         event.preventDefault();
 
     //Validates user input
-        if (this.state.quoteText === ""
+        if (this.state.quote_textt === ""
         ) {
             alert("please provide the quote text");
         } else {
@@ -47,12 +47,12 @@ class EditQuoteModal extends Component {
         //creates a new object for the edited news item,
             const editedQuote = {
                 id: this.props.quote.id,
-                pageId: this.props.quote.pageId,
-                quoteText: this.state.quoteText,
-                quoteAuthor: this.state.quoteAuthor,
+                page_id: this.props.quote.page_id,
+                quote_text: this.state.quote_text,
+                quote_author: this.state.quote_author,
             };
         //posts the object to the database (see PageMain)
-            this.props.putEditedQuote(editedQuote, this.props.pageId)
+            this.props.putEditedQuote(editedQuote, this.props.page_id)
         //closes the modal
             .then(this.toggle)
         }
@@ -64,8 +64,8 @@ class EditQuoteModal extends Component {
         QuoteManager.getQuote(this.props.quote.id)
         .then(quote => {
             this.setState({
-                quoteText: quote.quoteText,
-                quoteAuthor: quote.quoteAuthor,
+                quote_text: quote.quote_text,
+                quote_author: quote.quote_author,
             });
         });
     }
@@ -90,14 +90,14 @@ class EditQuoteModal extends Component {
 
                             <div className="editBookForm">
                                 <Input onChange={this.handleFieldChange} type="textarea"
-                                    id="quoteText"
-                                    value={this.state.quoteText}
+                                    id="quote_textt"
+                                    value={this.state.quote_text}
                                     required
                                     autoFocus=""
                                 /><br/>
                                 <Input onChange={this.handleFieldChange} type="text"
-                                    id="quoteAuthor"
-                                    value={this.state.quoteAuthor}
+                                    id="quote_author"
+                                    value={this.state.quote_author}
                                     required
                                 /><br/>
                             </div>

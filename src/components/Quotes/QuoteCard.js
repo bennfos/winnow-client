@@ -10,7 +10,7 @@ import '../Styles/Pages.css'
 
 class QuoteCard extends Component {
     state = {
-        randomQuoteText: "",
+        randomquote_text: "",
         visible: false,
         fadeIn: true
     }
@@ -30,8 +30,8 @@ class QuoteCard extends Component {
       QuoteManager.getRandomQuote()
         .then(quoteObj => {
             this.setState({
-                randomQuoteText: quoteObj.quoteText,
-                randomQuoteAuthor: quoteObj.quoteAuthor
+                randomquote_text: quoteObj.quote_text,
+                randomquote_author: quoteObj.quote_author
             })
         })
   }
@@ -55,8 +55,8 @@ class QuoteCard extends Component {
                 <div className="quoteCard__container">
             <Fade in={this.state.fadeIn}>
                     <div className="quoteCard__contents">
-                        <h3>{this.props.quote.quoteText}</h3>
-                        <h5 className="author">{this.props.quote.quoteAuthor}</h5>
+                        <h3>{this.props.quote.quote_text}</h3>
+                        <h5 className="author">{this.props.quote.quote_author}</h5>
                       <Fade in={this.state.visible}>
                         <div className="editAndDelete">
                           <div className="edit">

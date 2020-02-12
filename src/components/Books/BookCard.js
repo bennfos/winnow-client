@@ -10,7 +10,7 @@ import '../Styles/Books.css'
 class BookCard extends Component {
     state = {
         page: {},
-        pageId: 0,
+        page_id: 0,
         description: "",
         display: "hide",
         visible: false,
@@ -21,16 +21,16 @@ class BookCard extends Component {
     navigateToPage = (page) => {
         this.setState({
             page: page,
-            pageId: page.id,
+            page_id: page.id,
         })
-        console.log(this.state.pageId)
-        this.props.history.push(`/books/${this.props.book.id}/${this.state.pageId}/${this.props.currentMonth}/${this.props.currentDate}`)
+        console.log(this.state.page_id)
+        this.props.history.push(`/books/${this.props.book.id}/${this.state.page_id}/${this.props.currentMonth}/${this.props.currentDate}`)
 
     }
 
     constructNewPage = () => {
         const newPage = {
-            bookId: this.props.book.id,
+            book_id: this.props.book.id,
             month: this.props.currentMonth,
             day: this.props.currentDate,
             thought: ""
@@ -42,31 +42,31 @@ class BookCard extends Component {
         .then(newPage => {
             console.log("posted new page", newPage)
             this.setState({
-                pageId: newPage.id
+                page_id: newPage.id
             })
         })
         .then(() => {
             //then get a random quote
-            if (this.props.book.startsBlank === false) {
+            if (this.props.book.starts_blank === false) {
                 QuoteManager.getRandomQuote()
 
             //then post quote for that page
                 .then(quote => {
-                    console.log("got random quote:", quote.quoteText)
+                    console.log("got random quote:", quote.quote_text)
                     const initialQuote = {
-                        pageId: this.state.pageId,
-                        quoteText: quote.quoteText,
-                        quoteAuthor: quote.quoteAuthor,
+                        page_id: this.state.page_id,
+                        quote_text: quote.quote_text,
+                        quote_author: quote.quote_author,
                     };
                     QuoteManager.postQuote(initialQuote)
                         .then(quote => {
-                        console.log("random quote posted:", quote.quoteText)
-                        this.props.history.push(`/books/${this.props.book.id}/${this.state.pageId}/${this.props.currentMonth}/${this.props.currentDate}`)
+                        console.log("random quote posted:", quote.quote_text)
+                        this.props.history.push(`/books/${this.props.book.id}/${this.state.page_id}/${this.props.currentMonth}/${this.props.currentDate}`)
                         })
                 })
             } else {
             console.log("pushing...")
-            this.props.history.push(`/books/${this.props.book.id}/${this.state.pageId}/${this.props.currentMonth}/${this.props.currentDate}`)
+            this.props.history.push(`/books/${this.props.book.id}/${this.state.page_id}/${this.props.currentMonth}/${this.props.currentDate}`)
              }
         })
     }

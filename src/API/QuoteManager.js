@@ -14,9 +14,9 @@ export default {
         })
         .then(response => response.json());
     },
-    getPageQuotes(pageId) {
+    getPageQuotes(page_id) {
         const authHeader = createAuthHeaders();
-        return fetch(`${baseUrl}/quotes?pageId=${pageId}`, {
+        return fetch(`${baseUrl}/quotes?page_id=${page_id}`, {
             headers: authHeader
         })
         .then(response => response.json());

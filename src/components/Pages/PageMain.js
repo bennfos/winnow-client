@@ -16,11 +16,11 @@ class PageMain extends Component {
         modal: false,
         day: "",
         month: "",
-        pageId: 0,
+        page_id: 0,
         page: {},
         quotes: [],
         thought: "",
-        startsBlank: false,
+        starts_blank: false,
         monthOptions: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
         loadingStatus: false
     }
@@ -61,17 +61,17 @@ class PageMain extends Component {
             page: page,
             month: page.month,
             day: page.day,
-            pageId: page.id,
+            page_id: page.id,
             thought: page.thought
         })
-        this.props.history.push(`/books/${this.props.bookId}/${this.state.pageId}/${this.state.month}/${this.state.day}`)
+        this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
         this.toggle()
         this.toggleSidebar()
     }
 
     constructNewPage = () => {
         const newPage = {
-            bookId: this.props.bookId,
+            book_id: this.props.book_id,
             month: this.state.month,
             day: this.state.day,
             thought: ""
@@ -82,26 +82,26 @@ class PageMain extends Component {
         .then(page => {
             console.log("posted new page", page)
             this.setState({
-                pageId: page.id
+                page_id: page.id
             })
         })
         .then(() => {
             //then get a random quote
-            if (this.state.startsBlank === false) {
+            if (this.state.starts_blank === false) {
                 QuoteManager.getRandomQuote()
 
             //then post quote for that page
                 .then(quote => {
-                    console.log("got random quote:", quote.quoteText)
+                    console.log("got random quote:", quote.quote_textt)
                     const initialQuote = {
-                        pageId: this.state.pageId,
-                        quoteText: quote.quoteText,
-                        quoteAuthor: quote.quoteAuthor,
+                        page_id: this.state.page_id,
+                        quote_text: quote.quote_text,
+                        quote_author: quote.quote_author,
                     };
                     QuoteManager.postQuote(initialQuote)
                         .then(quote => {
-                            console.log("random quote posted:", quote.quoteText)
-                            this.props.history.push(`/books/${this.props.bookId}/${this.state.pageId}/${this.state.month}/${this.state.day}`)
+                            console.log("random quote posted:", quote.quote_text)
+                            this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
 
                             this.toggle()
                             this.toggleSidebar()
@@ -110,7 +110,7 @@ class PageMain extends Component {
 
         } else {
             console.log("pushing...")
-            this.props.history.push(`/books/${this.props.bookId}/${this.state.pageId}/${this.state.month}/${this.state.day}`)
+            this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
             this.toggle()
             this.toggleSidebar()
          }
@@ -126,7 +126,7 @@ class PageMain extends Component {
             this.setState({ loadingStatus: true });
 
         //check to see if the page already exists in the database
-            PageManager.checkForPage(this.props.bookId, this.state.month, this.state.day)
+            PageManager.checkForPage(this.props.book_id, this.state.month, this.state.day)
                 .then(page => {
 
                     //THEN, if it does exist, set state with that page's info, and push user to that page's view
@@ -145,10 +145,10 @@ class PageMain extends Component {
     }
 
 //update state with appropriate quotes whenever page is changed (called in componentDidUpdate in QuoteList)
-    renderPageQuotes = (pageId) => {
+    renderPageQuotes = (page_id) => {
     //get quotes for the page that is passed in as an argument, and set them in state
-        console.log("pageId passed in to renderPageQuotes: ", pageId)
-        QuoteManager.getPageQuotes(pageId)
+        console.log("page_id passed in to renderPageQuotes: ", page_id)
+        QuoteManager.getPageQuotes(page_id)
           .then(quotes => {
             this.setState({
                 quotes: quotes,
@@ -157,9 +157,9 @@ class PageMain extends Component {
     }
 
 //update state with appropriate thought whenever page is changed (called in componentDidUpdate ThoughtList)
-    renderThought = (pageId) => {
+    renderThought = (page_id) => {
     //get page data for page that is passed in as argument, and set thought in state
-        PageManager.getPage(pageId)
+        PageManager.getPage(page_id)
             .then(page => {
                 this.setState({
                     thought: page.thought
@@ -168,14 +168,14 @@ class PageMain extends Component {
     }
 
     //Add quote and pageQuote to database (called in AddQuoteModal)
-    addQuote = (newQuote, pageId) => {
-        console.log("newQuote in addQuote method: ", pageId, newQuote, )
+    addQuote = (newQuote, page_id) => {
+        console.log("newQuote in addQuote method: ", page_id, newQuote, )
         //post new quote object to the database
         return QuoteManager.postQuote(newQuote)
             .then(quote => {
-                console.log("quote posted:", quote.quoteText)
+                console.log("quote posted:", quote.quote_textt)
               //post the new pageQuote to the database
-                QuoteManager.getPageQuotes(pageId)
+                QuoteManager.getPageQuotes(page_id)
                 .then(quotes => {
                     this.setState({
                         quotes: quotes
@@ -186,10 +186,10 @@ class PageMain extends Component {
 
 
 //put edited quote object in database, then get all quotes for that page and set them in state (called in EditQuoteModal)
-    putEditedQuote = (editedQuote, pageId) => {
+    putEditedQuote = (editedQuote, page_id) => {
         return QuoteManager.editQuote(editedQuote.id, editedQuote)
             .then(() => {
-                QuoteManager.getPageQuotes(pageId)
+                QuoteManager.getPageQuotes(page_id)
                 .then(quotes => {
                     this.setState({
                         quotes: quotes,
@@ -199,10 +199,10 @@ class PageMain extends Component {
     }
 
 //delete quote from database, then get all pageQuotes and set them in state (called in QuoteCard)
-    removeQuote = (id, pageId) => {
+    removeQuote = (id, page_id) => {
         QuoteManager.deleteQuote(id)
             .then(() => {
-                QuoteManager.getPageQuotes(pageId)
+                QuoteManager.getPageQuotes(page_id)
                     .then(quotes => {
                         this.setState({
                             quotes: quotes,
@@ -213,11 +213,11 @@ class PageMain extends Component {
     };
 
 //put page object with edited thought in database, then get the page and set thought in state (called in AddThoughtModal)
-    putThought = (pageWithThought, pageId) => {
-        console.log(pageId, pageWithThought)
-        PageManager.editPage(pageId, pageWithThought)
+    putThought = (pageWithThought, page_id) => {
+        console.log(page_id, pageWithThought)
+        PageManager.editPage(page_id, pageWithThought)
             .then(()=> {
-                PageManager.getPage(pageId)
+                PageManager.getPage(page_id)
                 .then(page => {
                     this.setState({
                         thought: page.thought
@@ -230,10 +230,10 @@ class PageMain extends Component {
 
 
     componentDidMount () {
-        BookDataManager.getBook(this.props.bookId)
+        BookDataManager.getBook(this.props.book_id)
             .then(book => {
                 this.setState({
-                    startsBlank: book.startsBlank
+                    starts_blank: book.starts_blank
                 })
             })
     }

@@ -9,7 +9,7 @@ import logo from '../../agronomy.png'
 class ThoughtCard extends Component {
     state = {
         pages: [],
-        pageId: 0,
+        page_id: 0,
         thought: "",
         modal: false,
         loadingStatus: false,
@@ -39,8 +39,8 @@ class ThoughtCard extends Component {
         } else {
             //construct a page object that includes the new or edited thought
             const pageWithThought = {
-                id: this.props.pageId,
-                bookId: this.props.bookId,
+                id: this.props.page_id,
+                book_id: this.props.book_id,
                 month: this.props.month,
                 day: this.props.day,
                 thought: this.state.thought
@@ -53,9 +53,9 @@ class ThoughtCard extends Component {
 
     // renderThought updates state of thought in PageMain to trigger render when ThoughtCard is mounted
         componentDidMount() {
-            this.props.renderThought(this.props.pageId)
+            this.props.renderThought(this.props.page_id)
             //gets thought for that page into state so that it can be displayed in input field for user
-            PageManager.getPage(this.props.pageId)
+            PageManager.getPage(this.props.page_id)
                 .then(page => {
                     this.setState({
                         thought: page.thought,
@@ -70,10 +70,10 @@ class ThoughtCard extends Component {
         }
 
 
-//When component receives new pageId in props (i.e., page is changed) from PageMain, update state in PageMain to cause an update of state in this modal. Ensures correct value will populate in input field after page change.
+//When component receives new page_id in props (i.e., page is changed) from PageMain, update state in PageMain to cause an update of state in this modal. Ensures correct value will populate in input field after page change.
 componentDidUpdate(prevProps) {
-    if (this.props.pageId !== prevProps.pageId) {
-      this.props.renderThought(this.props.pageId)
+    if (this.props.page_id !== prevProps.page_id) {
+      this.props.renderThought(this.props.page_id)
       this.setState({
         thought: this.props.thought
       })

@@ -25,11 +25,11 @@ class Search extends Component {
     }
 
     searchPageQuotes = () => {
-        //4. Filter the quotes to include only those objects whose quoteText, quoteAuthor or month include the search input value
+        //4. Filter the quotes to include only those objects whose quote_text, quote_author or month include the search input value
         this.setState({initialMessage: ""})
         const searchResults = this.state.quotes.filter(quote =>
-                quote.quoteText.toLowerCase().includes(this.state.searchInput.toLowerCase())
-                || quote.quoteAuthor.toLowerCase().includes(this.state.searchInput.toLowerCase())
+                quote.quote_text.toLowerCase().includes(this.state.searchInput.toLowerCase())
+                || quote.quote_author.toLowerCase().includes(this.state.searchInput.toLowerCase())
                 || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
                 || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
                 if (this.state.loadingStatus === false ) {

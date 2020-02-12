@@ -6,8 +6,8 @@ class ConfirmDeleteThoughtModal extends Component {
 
 //Defines initial state
     state = {
-            quoteAuthor: "",
-            quoteText: "",
+            quote_author: "",
+            quote_text: "",
             modal: false
         };
 
@@ -21,13 +21,13 @@ class ConfirmDeleteThoughtModal extends Component {
 //edits page so that thought is removed, and puts edited page in database (see PageMain)
     removeThought = () => {
         const pageWithThought = {
-            id: this.props.pageId,
-            bookId: this.props.bookId,
+            id: this.props.page_id,
+            book_id: this.props.book_id,
             month: this.props.month,
             day: this.props.day,
             thought: ""
         }
-        this.props.putThought(pageWithThought, this.props.pageId)
+        this.props.putThought(pageWithThought, this.props.page_id)
         this.toggle()
     }
 

@@ -30,9 +30,9 @@ export default {
             body: JSON.stringify(editedPage)
         })
     },
-    checkForPage(bookId, month, day) {
+    checkForPage(book_id, month, day) {
         const authHeader = createAuthHeaders();
-        return fetch(`${baseUrl}/pages/${bookId}/${month}/${day}`, {
+        return fetch(`${baseUrl}/pages/${book_id}/${month}/${day}`, {
             headers: authHeader
         }).then(response => response.json());
     }

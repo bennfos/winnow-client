@@ -36,14 +36,14 @@ class SearchResultCard extends Component {
                             <h2 className="date">{this.props.searchResult.page.month} {this.props.searchResult.page.day}</h2>
                             <Button
                                 as={Link}
-                                to={`/books/${this.props.searchResult.page.bookId}/${this.props.searchResult.pageId}/${this.props.searchResult.page.month}/${this.props.searchResult.page.day}`}
+                                to={`/books/${this.props.searchResult.page.book_id}/${this.props.searchResult.page_id}/${this.props.searchResult.page.month}/${this.props.searchResult.page.day}`}
                                 icon="chevron right"
                                 size="mini"                           >
                             </Button>
                         </div>
                         <div className="resultCard__body">
-                            <h4>{this.props.searchResult.quoteText}</h4>
-                            <h5 className="author">{this.props.searchResult.quoteAuthor}</h5>
+                            <h4>{this.props.searchResult.quote_text}</h4>
+                            <h5 className="author">{this.props.searchResult.quote_author}</h5>
                             <p>{this.state.thoughtString}</p>
                         </div>
                     </CardBody>

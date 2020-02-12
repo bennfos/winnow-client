@@ -42,10 +42,10 @@ export default class ApplicationViews extends Component {
 
             <Route
             //NOT EXACT PATH  so that only pages include the month select top nav bar
-                path="/books/:bookId(\d+)" render={props => {
+                path="/books/:book_id(\d+)" render={props => {
                     // if (this.isAuthenticated()) {
                     return <PageMain
-                        bookId={parseInt(props.match.params.bookId)}
+                        book_id={parseInt(props.match.params.book_id)}
                         {...this.props}
                         {...props}/>
                     // }
