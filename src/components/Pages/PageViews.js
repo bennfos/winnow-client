@@ -13,7 +13,7 @@ export default class PageViews extends Component {
       <React.Fragment>
         <Route
           exact path="/books/:bookId(\d+)/:pageId(\d+)/:month/:day" render={props => {
-            if (this.isAuthenticated()) {
+            // if (this.isAuthenticated()) {
               return <PageDay
                         className="pusher"
                         pageId={parseInt(props.match.params.pageId)}
@@ -23,8 +23,9 @@ export default class PageViews extends Component {
                         {...this.props}
                       />
             }
-              return <Auth {...props} />
-          }}
+              // return <Auth {...props} />
+          }
+        // }
         />
 
 
