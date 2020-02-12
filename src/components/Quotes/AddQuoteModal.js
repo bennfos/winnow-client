@@ -41,7 +41,7 @@ class AddQuoteModal extends Component {
         //creates a new object for the quote that is to be added,
             const newQuote = {
                 page_id: this.props.page_id,
-                quote_text: this.statquote_text,
+                quote_text: this.state.quote_text,
                 quote_author: this.state.quote_author,
             };
             console.log(newQuote);
