@@ -80,7 +80,7 @@ class PageMain extends Component {
         //post the page object to the database, THEN set state with that page's id, and push user to that page's view
         PageManager.postPage(newPage)
         .then(page => {
-            console.log("posted new page", page.id)
+            console.log("posted new page", page)
             this.setState({
                 pageId: page.id
             })
