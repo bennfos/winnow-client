@@ -27,6 +27,7 @@ export default {
             body: JSON.stringify(newBook)
         })
         .then(response => response.json())
+        .catch(error => console.log(error))
     },
     editBook(id, editedBook) {
         const authHeader = createAuthHeaders();

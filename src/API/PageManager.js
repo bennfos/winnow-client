@@ -18,7 +18,8 @@ export default {
             headers: {"Content-Type": "application/json"},
             method: "POST",
             body: JSON.stringify(newPage)
-        }).then(response => response.json())
+        })
+        .then(response => response.json())
     },
     editPage(id, editedPage) {
         const authHeader = createAuthHeaders();
