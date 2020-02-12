@@ -11,6 +11,7 @@ import '../Styles/Pages.css'
 class QuoteCard extends Component {
     state = {
         randomQuoteText: "",
+        randomQuoteAuthor: "",
         visible: false,
         fadeIn: true
     }

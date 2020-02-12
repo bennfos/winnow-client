@@ -8,8 +8,8 @@ import { Button } from 'semantic-ui-react'
 
 class AddRandomQuoteModal extends Component {
     state = {
-        quote_text: "",
-        quote_author: "",
+        quoteText: "",
+        quoteAuthor: "",
         modal: false
       };
 
@@ -30,8 +30,8 @@ class AddRandomQuoteModal extends Component {
             QuoteManager.getRandomQuote()
                 .then(quote => {
                     this.setState({
-                        quote_text: quote.quote_text,
-                        quote_author: quote.quote_author
+                        quoteText: quote.quoteText,
+                        quoteAuthor: quote.quoteAuthor
                     })
             })
         }
@@ -41,8 +41,8 @@ class AddRandomQuoteModal extends Component {
         //creates a new object for the quote that is to be added,
             const newRandomQuote = {
                 page_id: this.props.page_id,
-                quote_text: this.state.quote_text,
-                quote_author: this.state.quote_author,
+                quote_text: this.state.quoteText,
+                quote_author: this.state.quoteAuthor,
             };
         //posts the object to the database, gets all pageQuotes, and rerenders (see PageMain)
             this.props.addQuote(newRandomQuote, this.props.page_id)
@@ -52,8 +52,8 @@ class AddRandomQuoteModal extends Component {
 
         resetQuoteState = () => {
             this.setState({
-                quote_text: "",
-                quote_author: ""
+                quoteText: "",
+                quoteAuthor: ""
             })
         }
 
@@ -99,13 +99,13 @@ class AddRandomQuoteModal extends Component {
                                         disabled
                                         type="textarea"
                                         id="quote_text"
-                                        value={this.state.quote_text}
+                                        value={this.state.quoteText}
                                     /><br/>
                                 <Input onChange={this.handleFieldChange}
                                         disabled
                                         type="text"
                                         id="quote_author"
-                                        value={this.state.quote_author}
+                                        value={this.state.quoteAuthor}
                                     /><br/>
                             </ModalBody>
                         <ModalFooter>
