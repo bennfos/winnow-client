@@ -8,32 +8,33 @@ export default {
 //All methods that fetch the quote data, with varying parameters and/or methods
 
     getQuotes() {
-        const authHeader = createAuthHeaders();
+        const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes`, {
             headers: authHeader
         })
-        .then(response => response.json());
+        .then(response => response.json())
     },
     getPageQuotes(page_id) {
-        const authHeader = createAuthHeaders();
+        const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes?page_id=${page_id}`, {
             headers: authHeader
         })
-        .then(response => response.json());
+        .then(response => response.json())
     },
     searchQuotes(search) {
-      const authHeader = createAuthHeaders();
+      const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes?search=${search}`, {
             headers: authHeader
         })
-        .then(response => response.json());
+        .then(response => response.json())
+        .catch(error => console.log(error))
     },
     getQuote(id) {
-        const authHeader = createAuthHeaders();
+        const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes/${id}`, {
             headers: authHeader
         })
-        .then(response => response.json());
+        .then(response => response.json())
     },
     postQuote(newQuote) {
         const authHeader = createAuthHeaders();
@@ -45,7 +46,7 @@ export default {
         .catch(error => console.log(error))
     },
     editQuote (id, editedQuote) {
-        const authHeader = createAuthHeaders();
+        const authHeader = createAuthHeaders()
         return fetch (`${baseUrl}/quotes/${id}`,  {
             method: "PUT",
             headers: authHeader,
@@ -53,7 +54,7 @@ export default {
         })
     },
     deleteQuote(id) {
-        const authHeader = createAuthHeaders();
+        const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes/${id}`,
         {method: "DELETE",
         headers: authHeader,
