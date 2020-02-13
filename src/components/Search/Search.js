@@ -10,7 +10,7 @@ import logo from '../../agronomy.png'
 class Search extends Component {
 
         state = {
-            quotes: [],
+
             searchInput: "",
             searchResults: [],
             initialMessage: "search and you shall find",
@@ -27,25 +27,15 @@ class Search extends Component {
     searchPageQuotes = () => {
         //4. Filter the quotes to include only those objects whose quote_text, quote_author or month include the search input value
         this.setState({initialMessage: ""})
-        const searchResults = this.state.quotes.filter(quote =>
-                quote.quote_text.toLowerCase().includes(this.state.searchInput.toLowerCase())
-                || quote.quote_author.toLowerCase().includes(this.state.searchInput.toLowerCase())
-                || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
-                || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
-                if (this.state.loadingStatus === false ) {
-                    this.setState({ searchResults: searchResults})
-                }
-    }
-
-    componentDidMount () {
-        QuoteManager.getQuotes()
-            .then(quotes => {
-                this.setState({
-                    quotes: quotes,
-                    loadingStatus: false
-                })
+        let search = this.state.searchInput.toLowerCase()
+        QuoteManager.searchQuotes(search)
+        .then(quotes => {
+            this.setState({
+                searchResults: quotes,
+                loadingStatus: false
             })
-        }
+        })
+      }
 
 
 

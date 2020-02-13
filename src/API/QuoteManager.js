@@ -21,6 +21,13 @@ export default {
         })
         .then(response => response.json());
     },
+    searchQuotes(search) {
+      const authHeader = createAuthHeaders();
+        return fetch(`${baseUrl}/quotes?search=${search}`, {
+            headers: authHeader
+        })
+        .then(response => response.json());
+    },
     getQuote(id) {
         const authHeader = createAuthHeaders();
         return fetch(`${baseUrl}/quotes/${id}`, {
