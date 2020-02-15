@@ -20,7 +20,7 @@ class RegisterModal extends React.Component {
         };
 
 
-    submit = (event) => {
+    handleSubmit (event) {
         event.preventDefault();
         const newUser = {
           first_name: this.state.first_name,
@@ -77,7 +77,7 @@ class RegisterModal extends React.Component {
                     <Button onClick={this.toggle}>sign up</Button>
                 </div>
                 <Modal autoFocus={false} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <form onSubmit={this.submit}>
+                <form onSubmit={this.handleSubmit}>
                     <ModalHeader toggle={this.toggle}>Sign up</ModalHeader>
                     <ModalBody>
                     <ul>

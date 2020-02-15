@@ -36,7 +36,7 @@ export const register = (user) => {
     body: JSON.stringify(user)
   })
     .then(response => response.json())
-    .then(handleAuthResponse)
+    // .then(handleAuthResponse)
 }
 
 const handleAuthResponse = (authResponse) => {
