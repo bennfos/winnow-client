@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Button } from 'semantic-ui-react'
 import BookManager from '../../API/BookManager'
 import { register } from '../../API/userManager';
+import axios from 'axios'
 
 //import './Login.css';
 
@@ -21,17 +22,25 @@ class RegisterModal extends React.Component {
 
 
     handleSubmit (event) {
-        event.preventDefault();
-        const newUser = {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          email: this.state.email,
-          username: this.state.username,
-          password: this.state.password,
-          password_confirmation: this.state.password_confirmation
-        }
-        console.log(newUser)
-        register(newUser)
+      event.preventDefault();
+      const newUser = {
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password,
+        password_confirmation: this.state.password_confirmation
+      }
+      axios.post(
+        'https://winnow-rails-api.herokuapp.com/api/v1/registrations',
+        newUser,
+        { withCredentials: true}
+      ).then(response => {
+        console.log("registration response: ", response)
+      }).catch(error => console.log("registration error: ", error))
+
+        // console.log(newUser)
+        // register(newUser)
         // .then((user) => {
         //     this.props.onLogin(user);
         //     this.constructFirstBook();
