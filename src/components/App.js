@@ -8,13 +8,13 @@ import ApplicationViews from "./ApplicationViews"
 
 class App extends Component {
   state = {
-    user: getUser(),
     editMode: false
   }
 
   toggleEditMode = () => {
     this.setState(state => ({ editMode: !state.editMode }))
   }
+
 
   logout = () => {
     this.setState({ user: null });
@@ -27,6 +27,8 @@ class App extends Component {
         <div className="appViews">
               <ApplicationViews
                editMode={this.state.editMode}
+               loggedInStatus={this.state.loggedIn}
+               handleSuccessfulAuth={this.handleSuccessfulAuth}
               />
         </div>
         <div className="nav__container">

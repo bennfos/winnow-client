@@ -42,6 +42,11 @@ class RegisterModal extends React.Component {
         { withCredentials: true}
         ).then(response => {
           console.log("registration response: ", response)
+          if (response.data.status === "created") {
+            this.props.handleSuccessfulAuth(response.data)
+          }
+          this.toggle();
+          this.props.history.push('/quote');
         }).catch(error => console.log("registration error: ", error))
 
         event.preventDefault();
@@ -50,8 +55,8 @@ class RegisterModal extends React.Component {
         // .then((user) => {
         //     this.props.onLogin(user);
         //     this.constructFirstBook();
-        //     this.toggle();
-        //     this.props.history.push('/quote');
+
+
         //     })
         //     .catch(err => {
         //     this.setState({ errors: err.messages });

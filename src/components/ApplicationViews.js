@@ -8,9 +8,25 @@ import Search from './Search/Search'
 
 
 export default class ApplicationViews extends Component {
+
+  state = {
+    loggedIn: false,
+    currentUser: {},
+  }
+
   isAuthenticated = () => localStorage.getItem("user") !== null;
 
+  handleSuccessfulAuth = (data) => {
+    this.handleLogin(data)
+    console.log(this.state)
+  }
 
+  handleLogin = (data) => {
+    this.setState({
+      loggedIn: true,
+      currentUser: data.user
+    })
+  }
 
   render() {
     return (
@@ -21,6 +37,10 @@ export default class ApplicationViews extends Component {
           render={props => {
               return <Auth
                 {...props}
+                loggedIn={this.state.loggedIn}
+                currentUser={this.state.user}
+                handleLogin={this.handleLogin}
+                handleSuccessfulAuth={this.handleSuccessfulAuth}
                 onLogin={(user) => this.setState({ user })}
               />;
           }}
