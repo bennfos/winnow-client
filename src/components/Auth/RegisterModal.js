@@ -21,24 +21,30 @@ class RegisterModal extends React.Component {
         };
 
 
-    handleSubmit (event) {
-      event.preventDefault();
-      const newUser = {
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        email: this.state.email,
-        username: this.state.username,
-        password: this.state.password,
-        password_confirmation: this.state.password_confirmation
-      }
+     submit = (event) => {
+      const {
+        first_name,
+        last_name,
+        email,
+        username,
+        password,
+        password_confirmation
+      } = this.state
       axios.post(
         'https://winnow-rails-api.herokuapp.com/api/v1/registrations',
-        newUser,
+        {first_name: first_name,
+          last_name: last_name,
+          email: email,
+          username: username,
+          password: password,
+          password_confirmation: password_confirmation
+        },
         { withCredentials: true}
-      ).then(response => {
-        console.log("registration response: ", response)
-      }).catch(error => console.log("registration error: ", error))
+        ).then(response => {
+          console.log("registration response: ", response)
+        }).catch(error => console.log("registration error: ", error))
 
+        event.preventDefault();
         // console.log(newUser)
         // register(newUser)
         // .then((user) => {
@@ -86,7 +92,7 @@ class RegisterModal extends React.Component {
                     <Button onClick={this.toggle}>sign up</Button>
                 </div>
                 <Modal autoFocus={false} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.submit}>
                     <ModalHeader toggle={this.toggle}>Sign up</ModalHeader>
                     <ModalBody>
                     <ul>
