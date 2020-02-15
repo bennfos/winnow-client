@@ -32,7 +32,6 @@ class Login extends Component {
             if (response.data.status === "created") {
               this.props.handleLogin(response.data)
             }
-            this.toggle();
             this.props.history.push('/quote');
           }).catch(error => console.log("login error: ", error))
 
