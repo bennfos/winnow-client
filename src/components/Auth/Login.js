@@ -29,12 +29,12 @@ class Login extends Component {
           { withCredentials: true}
           ).then(response => {
             console.log("login response: ", response)
-            // if (response.data.status === "created") {
-            //   this.props.handleLogin(response.data)
-            // }
-            // this.toggle();
-            // this.props.history.push('/quote');
-          }).catch(error => console.log("registration error: ", error))
+            if (response.data.status === "created") {
+              this.props.handleLogin(response.data)
+            }
+            this.toggle();
+            this.props.history.push('/quote');
+          }).catch(error => console.log("login error: ", error))
 
           event.preventDefault();
 
