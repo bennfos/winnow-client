@@ -22,24 +22,25 @@ class RegisterModal extends React.Component {
 
     submit = (event) => {
         event.preventDefault();
-        const { first_name, last_name, username, email, password, password_confirmation } = this.state;
-        register({
-            first_name,
-            last_name,
-            username,
-            email,
-            password,
-            password_confirmation
-        })
-        .then((user) => {
-            this.props.onLogin(user);
-            this.constructFirstBook();
-            this.toggle();
-            this.props.history.push('/quote');
-            })
-            .catch(err => {
-            this.setState({ errors: err.messages });
-            });
+        const newUser = {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          email: this.state.email,
+          username: this.state.username,
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation
+        }
+        console.log(newUser)
+        register(newUser)
+        // .then((user) => {
+        //     this.props.onLogin(user);
+        //     this.constructFirstBook();
+        //     this.toggle();
+        //     this.props.history.push('/quote');
+        //     })
+        //     .catch(err => {
+        //     this.setState({ errors: err.messages });
+        //     });
     }
 
     handleInputChange = (event) => {
@@ -142,7 +143,6 @@ class RegisterModal extends React.Component {
                         <Button
                             type="submit"
                             primary
-                            onClick={this.handleRegister}
                             >Sign up</Button>
                         <Button onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
