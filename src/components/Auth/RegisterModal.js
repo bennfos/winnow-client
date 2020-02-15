@@ -43,7 +43,7 @@ class RegisterModal extends React.Component {
         ).then(response => {
           console.log("registration response: ", response)
           if (response.data.status === "created") {
-            this.props.handleSuccessfulAuth(response.data)
+            this.props.handleLogin(response.data)
           }
           this.toggle();
           this.props.history.push('/quote');

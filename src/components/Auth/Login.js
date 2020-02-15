@@ -5,6 +5,7 @@ import logo from '../../agronomy.png'
 import "../Styles/Login.css";
 import { withRouter, Link } from 'react-router-dom';
 import { login } from '../../API/userManager';
+import axios from 'axios'
 
 
 class Login extends Component {
@@ -15,18 +16,40 @@ class Login extends Component {
       }
 
       submit = (event) => {
-        event.preventDefault();
-        login({
-          username: this.state.username,
-          password: this.state.password,
-        })
-          .then((user) => {
-            this.props.onLogin(user);
-            this.props.history.push('/quote');
-          })
-          .catch(err => {
-            this.setState({ errors: err.messages });
-          });
+        const {
+          username,
+          password,
+        } = this.state
+        axios.post(
+          'https://winnow-rails-api.herokuapp.com/api/v1/sessions',
+          {
+            username: username,
+            password: password,
+          },
+          { withCredentials: true}
+          ).then(response => {
+            console.log("login response: ", response)
+            // if (response.data.status === "created") {
+            //   this.props.handleLogin(response.data)
+            // }
+            // this.toggle();
+            // this.props.history.push('/quote');
+          }).catch(error => console.log("registration error: ", error))
+
+          event.preventDefault();
+
+
+        // login({
+        //   username: this.state.username,
+        //   password: this.state.password,
+        // })
+        //   .then((user) => {
+        //     this.props.handleLogin(user);
+        //     this.props.history.push('/quote');
+        //   })
+        //   .catch(err => {
+        //     this.setState({ errors: err.messages });
+        //   });
       }
 
       handleInputChange = (event) => {

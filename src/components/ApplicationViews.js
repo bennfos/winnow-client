@@ -16,11 +16,6 @@ export default class ApplicationViews extends Component {
 
   isAuthenticated = () => localStorage.getItem("user") !== null;
 
-  handleSuccessfulAuth = (data) => {
-    this.handleLogin(data)
-    console.log(this.state)
-  }
-
   handleLogin = (data) => {
     this.setState({
       loggedIn: true,
@@ -40,7 +35,6 @@ export default class ApplicationViews extends Component {
                 loggedIn={this.state.loggedIn}
                 currentUser={this.state.user}
                 handleLogin={this.handleLogin}
-                handleSuccessfulAuth={this.handleSuccessfulAuth}
                 onLogin={(user) => this.setState({ user })}
               />;
           }}
