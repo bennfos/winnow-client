@@ -15,6 +15,7 @@ export const removeUser = () => localStorage.removeItem('user');
 export const login = (user) => {
   return fetch(`${baseUrl}/login`, {
     method: 'POST',
+    credentials: 'include',
     body: JSON.stringify(user),
     headers: {
       'Accept': 'application/json',
@@ -26,7 +27,7 @@ export const login = (user) => {
 }
 
 export const register = (user) => {
-  return fetch(`${baseUrl}/users`, {
+  return fetch(`${baseUrl}/registrations`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

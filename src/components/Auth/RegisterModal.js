@@ -9,12 +9,12 @@ import { register } from '../../API/userManager';
 
 class RegisterModal extends React.Component {
     state = {
-            firstName: "",
-            lastName: "",
+            first_name: "",
+            last_name: "",
             email: "",
             username: "",
             password: "",
-            confirmPassword: "",
+            password_confirmation: "",
             modal: false,
             errors: []
         };
@@ -22,14 +22,14 @@ class RegisterModal extends React.Component {
 
     submit = (event) => {
         event.preventDefault();
-        const { firstName, lastName, username, email, password, confirmPassword } = this.state;
+        const { first_name, last_name, username, email, password, password_confirmation } = this.state;
         register({
-            firstName,
-            lastName,
+            first_name,
+            last_name,
             username,
             email,
             password,
-            confirmPassword,
+            password_confirmation
         })
         .then((user) => {
             this.props.onLogin(user);
@@ -63,7 +63,7 @@ class RegisterModal extends React.Component {
         const firstBook = {
             title: "quotebook",
             description: "we have created a quotebook for you, with inspiration for each day of the year.",
-            startsBlank: false
+            starts_blank: false
         }
         BookManager.postBook(firstBook)
     }
@@ -89,19 +89,19 @@ class RegisterModal extends React.Component {
                         <div>
                             <Input onChange={this.handleInputChange}
                                     type="text"
-                                    id="firstName"
-                                    name="firstName"
+                                    id="first_name"
+                                    name="first_name"
                                     placeholder="first name"
-                                    value={this.state.firstName}
+                                    value={this.state.first_name}
                                     required
                                     autoFocus={true}
                                 /><br/>
                             <Input onChange={this.handleInputChange}
                                     type="text"
-                                    id="lastName"
-                                    name="lastName"
+                                    id="last_name"
+                                    name="last_name"
                                     placeholder="last name"
-                                    value={this.state.lastName}
+                                    value={this.state.last_name}
                                     required
                                     /><br/>
                             <Input onChange={this.handleInputChange}
@@ -131,8 +131,8 @@ class RegisterModal extends React.Component {
                                     /><br/>
                             <Input onChange={this.handleInputChange}
                                     type="password"
-                                    id="confirmPassword"
-                                    name="confirmPassword"
+                                    id="password_confirmation"
+                                    name="password_confirmation"
                                     placeholder="confirm password"
                                     required
                                 />
