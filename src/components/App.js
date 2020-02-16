@@ -74,6 +74,7 @@ class App extends Component {
                editMode={this.state.editMode}
                isAuthenticated={this.state.isAuthenticated}
                handleLogin={this.handleLogin}
+               currentUser={this.state.currentUser}
               />
         </div>
         <div className="nav__container">

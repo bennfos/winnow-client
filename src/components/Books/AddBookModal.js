@@ -44,7 +44,7 @@ class AddBookModal extends Component {
                 title: this.state.title,
                 description: this.state.description,
                 starts_blank: true,
-                user_id: 1
+                user_id: this.props.currentUser.id
             };
 
         //posts the object to the database, gets all books updates state of books array
