@@ -24,7 +24,7 @@ export default class ApplicationViews extends Component {
   }
 
   checkLoginStatus = () => {
-    axios.get("https://winnow-rails-api.herokuapp.com/logged_in", {withCredentials: true})
+    axios.get("https://winnow-rails-api.herokuapp.com/api/v1/logged_in", {withCredentials: true})
       .then(response => {
         console.log("logged in? ", response)
         if (response.data.logged_in && this.state.isAuthenticated === false) {
