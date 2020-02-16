@@ -5,6 +5,7 @@ import BookMain from './Books/BookMain'
 import RandomQuote from './Quotes/RandomQuote'
 import PageMain from './Pages/PageMain'
 import Search from './Search/Search'
+import axios from 'axios'
 
 
 export default class ApplicationViews extends Component {
@@ -21,6 +22,19 @@ export default class ApplicationViews extends Component {
       loggedIn: true,
       currentUser: data.user
     })
+  }
+
+  checkLoginStatus = () => {
+    axios.get("https:winnow-client.herokuapp.com/logged_in", {withCredentials: true})
+      .then(response => console.log("logged in? ", response))
+      .catch(error => {
+        console.log("check login error: ", error)
+      })
+
+  }
+
+  componentDidMount() {
+    this.checkLoginStatus()
   }
 
   render() {
