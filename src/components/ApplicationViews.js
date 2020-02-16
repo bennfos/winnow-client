@@ -11,26 +11,38 @@ import axios from 'axios'
 export default class ApplicationViews extends Component {
 
   state = {
-    loggedIn: false,
+    isAuthenticated: false,
     currentUser: {},
   }
 
-  isAuthenticated = () => localStorage.getItem("user") !== null;
 
   handleLogin = (data) => {
     this.setState({
-      loggedIn: true,
+      isAuthenticated: true,
       currentUser: data.user
     })
   }
 
   checkLoginStatus = () => {
-    axios.get("https:winnow-client.herokuapp.com/logged_in", {withCredentials: true})
-      .then(response => console.log("logged in? ", response))
+    axios.get("https://winnow-rails-api.herokuapp.com/logged_in", {withCredentials: true})
+      .then(response => {
+        console.log("logged in? ", response)
+        if (response.data.logged_in && this.state.isAuthenticated === false) {
+          this.setState({
+            isAuthenticated: true,
+            currentUser: response.data.user
+          })
+        } else if (!response.data.logged_in && this.state.isAuthenticated === true) {
+          this.setState({
+            isAuthenticated: false,
+            currentUser: {}
+          })
+        }
+        console.log("isAuthenticated status in react state: ", this.state.isAuthenticated)
+      })
       .catch(error => {
         console.log("check login error: ", error)
       })
-
   }
 
   componentDidMount() {
@@ -46,7 +58,7 @@ export default class ApplicationViews extends Component {
           render={props => {
               return <Auth
                 {...props}
-                loggedIn={this.state.loggedIn}
+                isAuthenticated={this.state.isAuthenticated}
                 currentUser={this.state.user}
                 handleLogin={this.handleLogin}
                 onLogin={(user) => this.setState({ user })}
