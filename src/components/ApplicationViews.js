@@ -27,6 +27,7 @@ export default class ApplicationViews extends Component {
           render={props => {
               return <Auth
                 {...props}
+                {...this.props}
                 onLogin={(user) => this.setState({ user })}
               />;
           }}
@@ -36,9 +37,9 @@ export default class ApplicationViews extends Component {
             exact path="/books" render={props => {
                 if (this.isAuthenticated()) {
                 return <BookMain
-                    {...this.props}
-                    {...props}
-                    onLogin={(user) => this.setState({ user })}
+                  {...props}
+                  {...this.props}
+                  onLogin={(user) => this.setState({ user })}
                 />
                 }
                 return <Redirect to="/" />
