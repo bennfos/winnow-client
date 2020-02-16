@@ -4,10 +4,13 @@ import { Menu, Dropdown, Button } from 'semantic-ui-react'
 import { getUser, removeUser } from '../API/userManager';
 import './App.css';
 import ApplicationViews from "./ApplicationViews"
+import axios from 'axios'
 
 
 class App extends Component {
   state = {
+    isAuthenticated: false,
+    currentUser: {},
     editMode: false
   }
 
@@ -15,6 +18,48 @@ class App extends Component {
     this.setState(state => ({ editMode: !state.editMode }))
   }
 
+  handleLogin = (data) => {
+    this.setState({
+      isAuthenticated: true,
+      currentUser: data.user
+    })
+  }
+
+  handleLogout = () => {
+    axios.delete("https://winnow-rails-api.herokuapp.com/api/v1/logout", {withCredentials: true})
+      .then(
+        this.setState({
+          isAuthenticated: false,
+          currentUser: {}
+        })
+      ).catch(error => console.log("logout error: ", error))
+  }
+
+  checkLoginStatus = () => {
+    axios.get("https://winnow-rails-api.herokuapp.com/api/v1/logged_in", {withCredentials: true})
+      .then(response => {
+        console.log("logged in? ", response)
+        if (response.data.logged_in && this.state.isAuthenticated === false) {
+          this.setState({
+            isAuthenticated: true,
+            currentUser: response.data.user
+          })
+        } else if (!response.data.logged_in && this.state.isAuthenticated === true) {
+          this.setState({
+            isAuthenticated: false,
+            currentUser: {}
+          })
+        }
+        console.log("isAuthenticated status in react state: ", this.state.isAuthenticated)
+      })
+      .catch(error => {
+        console.log("check login error: ", error)
+      })
+  }
+
+  componentDidMount() {
+    this.checkLoginStatus()
+  }
 
   logout = () => {
     this.setState({ user: null });
@@ -27,8 +72,8 @@ class App extends Component {
         <div className="appViews">
               <ApplicationViews
                editMode={this.state.editMode}
-               loggedInStatus={this.state.loggedIn}
-               handleSuccessfulAuth={this.handleSuccessfulAuth}
+               isAuthenticated={this.state.isAuthenticated}
+               handleLogin={this.handleLogin}
               />
         </div>
         <div className="nav__container">
@@ -80,7 +125,7 @@ class App extends Component {
                         className="logout red"
                         as={Link}
                         to='/'
-                        onClick={this.logout}
+                        onClick={this.handleLogout}
                         >logout
                     </Dropdown.Item>
                   </Dropdown.Menu>

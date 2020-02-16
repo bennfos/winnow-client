@@ -18,13 +18,13 @@ class Login extends Component {
       submit = (event) => {
         const {
           username,
-          password,
+          password
         } = this.state
         axios.post(
           'https://winnow-rails-api.herokuapp.com/api/v1/sessions',
           {
             username: username,
-            password: password,
+            password: password
           },
           { withCredentials: true}
           ).then(response => {
