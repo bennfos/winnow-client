@@ -5,7 +5,7 @@ export default {
 
     //All methods that fetch the book data, with varying parameters and/or methods
 
-    getAllBooks(userId) {
+    getUserBooks(userId) {
         const authHeader = createAuthHeaders();
         return fetch(`${baseUrl}/books?user_id=${userId}`, {
             headers: authHeader

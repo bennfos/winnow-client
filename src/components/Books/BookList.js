@@ -21,7 +21,7 @@ class BookList extends Component {
   //When component mounts, get all user's books and set state of with all existsing books
   componentDidMount() {
     const d = new Date();
-    BookManager.getAllBooks().then(books => {
+    BookManager.getUserBooks(this.props.currentUser.id).then(books => {
         this.setState({
           books: books,
           currentMonth: this.state.months[d.getMonth()],
@@ -35,7 +35,7 @@ class BookList extends Component {
   addBook = newBook => {
     return BookManager.postBook(newBook)
         .then(() => {
-            BookManager.getAllBooks()
+            BookManager.getUserBooks(this.props.currentUser.id)
                 .then(books => {
                     this.setState({
                         books: books
@@ -49,7 +49,7 @@ class BookList extends Component {
   removeBook = id => {
     BookManager.deleteBook(id)
         .then(() => {
-            BookManager.getAllBooks()
+            BookManager.getUserBooks(this.props.currentUser.id)
                 .then(books => {
           this.setState({
             books: books
@@ -63,7 +63,7 @@ class BookList extends Component {
       console.log(editedBook.id, editedBook)
     return BookManager.editBook(editedBook.id, editedBook)
     .then(() => {
-      BookManager.getAllBooks()
+      BookManager.getUserBooks(this.props.currentUser.id)
         .then(books => {
           this.setState({
             books: books
