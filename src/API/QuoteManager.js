@@ -23,7 +23,9 @@ export default {
     },
     searchQuotes(search) {
       // const authHeader = createAuthHeaders()
-        return fetch(`${baseUrl}/quotes?search=${search}`)
+        return fetch(`${baseUrl}/quotes?search=${search}`, {
+          credentials: 'include'
+        })
         .then(response => response.json())
         .catch(error => console.log(error))
     },
