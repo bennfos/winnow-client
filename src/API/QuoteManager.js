@@ -23,9 +23,7 @@ export default {
     },
     searchQuotes(search) {
       // const authHeader = createAuthHeaders()
-        return fetch(`${baseUrl}/quotes?search=${search}`, {
-          headers: {'Content-Type': 'application/json'},
-        })
+        return fetch(`${baseUrl}/quotes?search=${search}`)
         .then(response => response.json())
         .catch(error => console.log(error))
     },
