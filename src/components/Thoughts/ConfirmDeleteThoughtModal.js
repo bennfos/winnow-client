@@ -11,7 +11,7 @@ class ConfirmDeleteThoughtModal extends Component {
             modal: false
         };
 
-//Displays/hides the new article modal
+//Displays/hides the modal
     toggle = () => {
         this.setState(prevState => ({
             modal: !prevState.modal
