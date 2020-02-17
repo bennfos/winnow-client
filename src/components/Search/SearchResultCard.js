@@ -12,12 +12,11 @@ class SearchResultCard extends Component {
     }
 
     componentDidMount() {
-        if (this.props.searchResult.page.thought.length > 0) {
+        if (this.props.searchResult.page !== undefined && this.props.searchResult.page.thought.length > 0) {
             this.setState({
                 thoughtString: this.props.searchResult.page.thought
             })
-        }
-        if (this.props.searchResult.page.thought.length > 50) {
+        } else if (this.props.searchResult.page !== undefined && this.props.searchResult.page.thought.length > 50) {
             let slicedThoughtString = this.props.searchResult.page.thought.slice(0, 50)
             this.setState({
                 thoughtString: `${slicedThoughtString}...`
