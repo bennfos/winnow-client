@@ -32,17 +32,17 @@ class SearchResultCard extends Component {
                 <Card className="card__container">
 
                     <CardBody >
-                        {this.props.searchResult !== {} ?
-                          <div className="resultCard__header">
-                              <h2 className="date">{this.props.searchResult.page.month} {this.props.searchResult.page.day}</h2>
-                              <Button
-                                  as={Link}
-                                  to={`/books/${this.props.searchResult.page.book_id}/${this.props.searchResult.page_id}/${this.props.searchResult.page.month}/${this.props.searchResult.page.day}`}
-                                  icon="chevron right"
-                                  size="mini">
-                              </Button>
-                          </div>
-                        : <div></div>}
+                          {this.props.searchResult.page !== undefined ?
+                        <div className="resultCard__header">
+                            <h2 className="date">{this.props.searchResult.page.month} {this.props.searchResult.page.day}</h2>
+                            <Button
+                                as={Link}
+                                to={`/books/${this.props.searchResult.page.book_id}/${this.props.searchResult.page_id}/${this.props.searchResult.page.month}/${this.props.searchResult.page.day}`}
+                                icon="chevron right"
+                                size="mini">
+                            </Button>
+                        </div>
+                          : <div></div>}
                         <div className="resultCard__body">
                             <h4>{this.props.searchResult.quote_text}</h4>
                             <h5 className="author">{this.props.searchResult.quote_author}</h5>

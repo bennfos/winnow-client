@@ -57,14 +57,14 @@ class Search extends Component {
                         </InputGroup>
                     </div>
                     <div className="results__container">
-                        {this.state.searchResults.length > 0 ?
+                        { this.state.searchInput !== "" ?
                           this.state.searchResults.map(searchResult => (
                             <SearchResultCard
                                 key={searchResult.id}
                                 searchResult={searchResult}
                                 {...this.props}/>
                             ))
-                          : <div></div>}
+                          : <div></div> }
                           <div className="initialMessage">
                               <Image className="logo" src={logo}></Image>
                               <div className="initialMessage--text">
