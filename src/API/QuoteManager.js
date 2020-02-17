@@ -22,9 +22,9 @@ export default {
         .then(response => response.json())
     },
     searchQuotes(search) {
-      const authHeader = createAuthHeaders()
+      // const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes?search=${search}`, {
-            headers: authHeader
+          headers: {'Content-Type': 'application/json'},
         })
         .then(response => response.json())
         .catch(error => console.log(error))
