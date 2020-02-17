@@ -57,12 +57,14 @@ class Search extends Component {
                         </InputGroup>
                     </div>
                     <div className="results__container">
-                        {this.state.searchResults.map(searchResult => (
-                        <SearchResultCard
-                            key={searchResult.id}
-                            searchResult={searchResult}
-                            {...this.props}/>
-                        ))}
+                        {this.state.searchResults.length > 0 ?
+                          this.state.searchResults.map(searchResult => (
+                            <SearchResultCard
+                                key={searchResult.id}
+                                searchResult={searchResult}
+                                {...this.props}/>
+                            ))
+                          : <div></div>}
                           <div className="initialMessage">
                               <Image className="logo" src={logo}></Image>
                               <div className="initialMessage--text">
