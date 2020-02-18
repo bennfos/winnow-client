@@ -21,14 +21,6 @@ export default {
         })
         .then(response => response.json())
     },
-    searchQuotes(search) {
-      // const authHeader = createAuthHeaders()
-        return fetch(`${baseUrl}/quotes?search=${search}`, {
-          credentials: 'include'
-        })
-        .then(response => response.json())
-        .catch(error => console.log(error))
-    },
     getQuote(id) {
         const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes/${id}`, {
