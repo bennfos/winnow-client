@@ -61,7 +61,7 @@ render() {
                 talk about.</em></h4>
             <div className="login__description--2">
                 <h4><em>Create a daily quote book to winnow the
-                chaff of media noise, and collect a few
+                chaff of media noise and collect a few
                 grains of wisdom.</em></h4>
             </div>
           </div>
