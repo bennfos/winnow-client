@@ -28,14 +28,12 @@ class PageDay extends Component {
                         />
                     </div>
                 </Fade>
-                <Fade in={this.state.fadeIn}>
-                    <div className="thoughtList">
+                <div className="thoughtList">
 
-                        <ThoughtList
-                            {...this.props}
-                        />
-                    </div>
-                </Fade>
+                    <ThoughtList
+                        {...this.props}
+                    />
+                </div>
                 </div>
             </React.Fragment>
         )
