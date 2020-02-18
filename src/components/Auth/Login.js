@@ -28,7 +28,7 @@ class Login extends Component {
           },
           { withCredentials: true}
           ).then(response => {
-            console.log("login response: ", response)
+
             if (response.data.status === "created") {
               this.props.handleLogin(response.data)
             }
@@ -36,19 +36,6 @@ class Login extends Component {
           }).catch(error => console.log("login error: ", error))
 
           event.preventDefault();
-
-
-        // login({
-        //   username: this.state.username,
-        //   password: this.state.password,
-        // })
-        //   .then((user) => {
-        //     this.props.handleLogin(user);
-        //     this.props.history.push('/quote');
-        //   })
-        //   .catch(err => {
-        //     this.setState({ errors: err.messages });
-        //   });
       }
 
       handleInputChange = (event) => {

@@ -41,10 +41,11 @@ class RegisterModal extends React.Component {
         },
         { withCredentials: true}
         ).then(response => {
-          console.log("registration response: ", response)
+
           if (response.data.status === "created") {
             this.props.handleLogin(response.data)
           }
+          this.constructFirstBook();
           this.toggle();
           this.props.history.push('/quote');
         }).catch(error => console.log("registration error: ", error))
@@ -54,7 +55,7 @@ class RegisterModal extends React.Component {
         // register(newUser)
         // .then((user) => {
         //     this.props.onLogin(user);
-        //     this.constructFirstBook();
+
 
 
         //     })
@@ -84,7 +85,8 @@ class RegisterModal extends React.Component {
         const firstBook = {
             title: "quotebook",
             description: "we have created a quotebook for you, with inspiration for each day of the year.",
-            starts_blank: false
+            starts_blank: false,
+            user_id: this.props.currentUser.id
         }
         BookManager.postBook(firstBook)
     }
