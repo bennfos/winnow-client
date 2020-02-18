@@ -57,7 +57,7 @@ class Search extends Component {
                         </InputGroup>
                     </div>
                     <div className="results__container">
-                        { this.state.searchResults.length > 0 ?
+                        { this.state.searchResults !== [] ?
                           this.state.searchResults.map(searchResult => (
                             <SearchResultCard
                                 key={searchResult.id}
