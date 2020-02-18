@@ -10,6 +10,9 @@ export default {
     getQuotes() {
         const authHeader = createAuthHeaders()
         return fetch(`${baseUrl}/quotes`, {
+          headers: {
+            'Content-Type': 'application/json'
+          },
           credentials: 'include'
         })
         .then(response => response.json())
