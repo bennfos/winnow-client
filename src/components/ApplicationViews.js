@@ -70,7 +70,7 @@ export default class ApplicationViews extends Component {
           exact path="/search" render={props => {
               if (this.isAuthenticated()) {
               return <Search
-              {...this.props}
+                {...this.props}
                 {...props}
                 />
               }
