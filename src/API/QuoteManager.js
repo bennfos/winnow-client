@@ -7,9 +7,8 @@ export default {
 
 //All methods that fetch the quote data, with varying parameters and/or methods
 
-    getQuotes() {
-        const authHeader = createAuthHeaders()
-        return fetch(`${baseUrl}/quotes`, {
+    getQuotes(user_id) {
+        return fetch(`${baseUrl}/quotes?user_id=${user_id}`, {
           headers: {
             'Content-Type': 'application/json'
           },
