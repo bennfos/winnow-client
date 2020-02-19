@@ -92,15 +92,15 @@ class PageMain extends Component {
 
             //then post quote for that page
                 .then(quote => {
-                    console.log("got random quote:", quote.quote_text)
+                    console.log("got random quote:", quote.quoteText)
                     const initialQuote = {
                         page_id: this.state.page_id,
-                        quote_text: quote.quote_text,
-                        quote_author: quote.quote_author,
+                        quote_text: quote.quoteText,
+                        quote_author: quote.quoteAuthor,
                     };
                     QuoteManager.postQuote(initialQuote)
                         .then(quote => {
-                            console.log("random quote posted:", quote.quote_text)
+                            console.log("random quote posted:", quote.quoteText)
                             this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
 
                             this.toggle()
