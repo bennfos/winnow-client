@@ -13,7 +13,6 @@ class Search extends Component {
             searchInput: "",
             searchResults: [],
             initialMessage: "search and you shall find",
-            loadingStatus: true,
         }
 
 
@@ -31,9 +30,8 @@ class Search extends Component {
               || quote.quote_author.toLowerCase().includes(this.state.searchInput.toLowerCase())
               || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
               || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
-              if (this.state.loadingStatus === false ) {
-                  this.setState({ searchResults: searchResults})
-              }
+
+              this.setState({ searchResults: searchResults})
     }
 
   componentDidMount () {
