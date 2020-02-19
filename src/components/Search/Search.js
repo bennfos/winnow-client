@@ -10,6 +10,7 @@ import logo from '../../agronomy.png'
 class Search extends Component {
 
         state = {
+            quotes: [],
             searchInput: "",
             searchResults: [],
             initialMessage: "search and you shall find",
@@ -39,7 +40,6 @@ class Search extends Component {
         .then(quotes => {
             this.setState({
                 quotes: quotes,
-                loadingStatus: false
             })
         })
     }
