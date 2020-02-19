@@ -41,6 +41,8 @@ class Search extends Component {
             this.setState({
                 quotes: quotes,
             })
+            console.log(`Quotes for ${this.props.currentUser.first_name}: `, quotes)
+            console.log('Quotes set in state: ', this.state.quotes)
         })
     }
 
