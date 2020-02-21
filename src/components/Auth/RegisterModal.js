@@ -84,7 +84,7 @@ class RegisterModal extends React.Component {
 
         const firstBook = {
             title: "quotebook",
-            description: "we have created a quotebook for you, with inspiration for each day of the year.",
+            description: "we have created a quotebook for you, with inspiration for each day of the year. tap to open and use the top navigate to any day of the year. you may also tap the + button above to create a new book and start from scratch.",
             starts_blank: false,
             user_id: this.props.currentUser.id
         }
