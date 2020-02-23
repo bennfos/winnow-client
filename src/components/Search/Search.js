@@ -36,9 +36,9 @@ class Search extends Component {
               || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
               || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
       const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "november", "december"]
-      const filteredQuotes = []
+      let filteredQuotes = []
       for (let month of months) {
-        const monthQuotes = this.filterQuotesByMonth(searchResults, month)
+        let monthQuotes = this.filterQuotesByMonth(searchResults, month)
         filteredQuotes.concat(monthQuotes)
         console.log(`filtered quotes after ${month} filter: `, filteredQuotes)
       }
