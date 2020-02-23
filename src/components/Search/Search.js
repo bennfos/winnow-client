@@ -18,9 +18,13 @@ class Search extends Component {
 
 
     handleFieldChange = (event) => {
-        const stateToChange = {};
-        stateToChange[event.target.id] = event.target.value;
-        this.setState(stateToChange);
+      const stateToChange = {};
+      stateToChange[event.target.id] = event.target.value;
+      this.setState(stateToChange);
+    }
+
+    filterQuotesByMonth = (quotes, month) => {
+      return quotes.filter(quote => quote.page.month === month)
     }
 
     searchPageQuotes = () => {
@@ -31,19 +35,26 @@ class Search extends Component {
               || quote.quote_author.toLowerCase().includes(this.state.searchInput.toLowerCase())
               || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
               || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
-      searchResults = searchResults.sort((a, b) =>
-        (a.page.month > b.page.month) ? 1
-          : (a.page.month === b.page.month) ? ((a.page.day > b.page.day) ? 1 : -1) : -1)
-      this.setState({ searchResults: searchResults})
+      const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "november", "december"]
+      const filteredQuotes = []
+      for (let month of months) {
+        const monthQuotes = this.filterQuotesByMonth(searchResults, month)
+        filteredQuotes.concat(monthQuotes)
+      }
+      this.setState({ searchResults: filteredQuotes})
     }
 
   componentDidMount () {
     QuoteManager.getQuotes(this.props.currentUser.id)
         .then(quotes => {
+          const sortedQuotes = quotes.sort((a, b) =>
+          (a.page.month > b.page.month) ? 1
+            : (a.page.month === b.page.month) ? ((a.page.day > b.page.day) ? 1 : -1) : -1)
             this.setState({
-                quotes: quotes,
+                quotes: sortedQuotes,
             })
-            console.log(`Quotes for ${this.props.currentUser.first_name}: `, quotes)
+            console.log("Quotes: ", quotes)
+            console.log(`Sorted Quotes for ${this.props.currentUser.first_name}: `, sortedQuotes)
             console.log('Quotes set in state: ', this.state.quotes)
         })
     }
