@@ -40,10 +40,8 @@ class Search extends Component {
       for (let month of months) {
         let monthQuotes = this.filterQuotesByMonth(searchResults, month)
         filteredQuotes = filteredQuotes.concat(monthQuotes)
-        console.log(`filtered quotes after ${month} filter: `, filteredQuotes)
       }
       this.setState({ searchResults: filteredQuotes})
-      console.log("filtered quotes in state: ", filteredQuotes)
     }
 
   componentDidMount () {
@@ -55,9 +53,6 @@ class Search extends Component {
             this.setState({
                 quotes: sortedQuotes,
             })
-            console.log("Quotes: ", quotes)
-            console.log(`Sorted Quotes for ${this.props.currentUser.first_name}: `, sortedQuotes)
-            console.log('Quotes set in state: ', this.state.quotes)
         })
     }
 
