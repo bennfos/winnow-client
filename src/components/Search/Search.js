@@ -39,7 +39,7 @@ class Search extends Component {
       let filteredQuotes = []
       for (let month of months) {
         let monthQuotes = this.filterQuotesByMonth(searchResults, month)
-        filteredQuotes.concat(monthQuotes)
+        filteredQuotes = filteredQuotes.concat(monthQuotes)
         console.log(`filtered quotes after ${month} filter: `, filteredQuotes)
       }
       this.setState({ searchResults: filteredQuotes})
