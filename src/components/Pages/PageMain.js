@@ -288,6 +288,7 @@ class PageMain extends Component {
                 quotes={this.state.quotes}
                 setMonth={this.setMonth}
                 setDay={this.setDay}
+                handlePageSelect={this.handlePageSelect}
                 {...this.props}
               />
             </Sidebar.Pusher>
