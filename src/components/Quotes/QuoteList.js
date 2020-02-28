@@ -28,13 +28,13 @@ class QuoteList extends Component {
     }
     this.setState({
       month: month,
-      days: daysOfMonth
+      daysOfMonth: daysOfMonth
     })
   }
 
   changeDay = (dir) => {
       if (dir === "next") {
-        console.log("day in state: ", parseInt(this.state.day))
+        console.log("day in props: ", parseInt(this.props.day))
         console.log(`days in this month of ${this.state.month}: ${this.state.daysOfMonth.length}`)
         if (parseInt(this.state.day) < this.state.daysOfMonth.length) {
           console.log("Not the end of the month")
