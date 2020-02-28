@@ -34,7 +34,7 @@ class QuoteList extends Component {
 
   changeDay = (dir) => {
       if (dir === "next") {
-        if (parseInt(this.state.day) < this.state.daysOfMonth.length()) {
+        if (parseInt(this.state.day) < this.state.daysOfMonth.length) {
           const nextDay = parseInt(this.props.day) + 1
           this.setState({
             day: nextDay.toString()
