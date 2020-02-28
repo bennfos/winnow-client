@@ -23,38 +23,42 @@ class Search extends Component {
       this.setState(stateToChange);
     }
 
-    filterQuotesByMonth = (quotes, month) => {
-      return quotes.filter(quote => quote.page.month === month)
+    searchPageQuotes = () => {
+      this.setState({initialMessage: ""})
+      let searchResults = this.filterQuotes(this.state.quotes)
+      this.setState({ searchResults: searchResults})
     }
 
-    searchPageQuotes = () => {
-      //4. Filter the quotes to include only those objects whose quote_text, quote_author or month include the search input value
-      this.setState({initialMessage: ""})
-      let searchResults = this.state.quotes.filter(quote =>
-              quote.quote_text.toLowerCase().includes(this.state.searchInput.toLowerCase())
-              || quote.quote_author.toLowerCase().includes(this.state.searchInput.toLowerCase())
-              || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
-              || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
-      const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "november", "december"]
+    filterQuotes = quotes => {
+      let searchResults = quotes.filter(quote =>
+        quote.quote_text.toLowerCase().includes(this.state.searchInput.toLowerCase())
+        || quote.quote_author.toLowerCase().includes(this.state.searchInput.toLowerCase())
+        || quote.page.month.toLowerCase().includes(this.state.searchInput.toLowerCase())
+        || quote.page.thought.toLowerCase().includes(this.state.searchInput.toLowerCase()))
+      const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
       let filteredQuotes = []
       for (let month of months) {
-        let monthQuotes = this.filterQuotesByMonth(searchResults, month)
+        const monthQuotes = searchResults.filter(quote => quote.page.month === month)
         filteredQuotes = filteredQuotes.concat(monthQuotes)
       }
-      this.setState({ searchResults: filteredQuotes})
+      return filteredQuotes
+    }
+
+    sortQuotes = quotes => {
+      const sortedQuotes = quotes.sort((a, b) => (a.page.month > b.page.month) ? 1
+        : (a.page.month === b.page.month) ? ((a.page.day > b.page.day) ? 1 : -1) : -1)
+      return sortedQuotes
     }
 
   componentDidMount () {
     QuoteManager.getQuotes(this.props.currentUser.id)
-        .then(quotes => {
-          const sortedQuotes = quotes.sort((a, b) =>
-          (a.page.month > b.page.month) ? 1
-            : (a.page.month === b.page.month) ? ((a.page.day > b.page.day) ? 1 : -1) : -1)
-            this.setState({
-                quotes: sortedQuotes,
-            })
+      .then(quotes => {
+        const sortedQuotes = this.sortQuotes(quotes)
+        this.setState({
+          quotes: sortedQuotes,
         })
-    }
+      })
+  }
 
 
     render() {
