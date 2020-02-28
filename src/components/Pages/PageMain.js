@@ -14,6 +14,8 @@ class PageMain extends Component {
     state = {
       visible: false,
       modal: false,
+      currentMonth: "",
+      currentDate: "",
       day: "",
       month: "",
       page_id: 0,
@@ -75,6 +77,12 @@ class PageMain extends Component {
     }
 
     constructNewPage = () => {
+      if (this.state.month === "" && this.state.day === "") {
+        this.setState({
+          month: this.state.currentMonth,
+          day: this.state.currentDate
+        })
+      }
       const newPage = {
         book_id: this.props.book_id,
         month: this.state.month,
@@ -116,25 +124,20 @@ class PageMain extends Component {
 
 //Construct or navigate to page (called in Month components)
     handlePageSelect = () => {
-    //Validates user input
-        if (this.state.day === "") {
-          alert("please select a day");
-        } else {
-          this.setState({ loadingStatus: true });
-        //check to see if the page already exists in the database
-          PageManager.checkForPage(this.props.book_id, this.state.month, this.state.day)
-            .then(page => {
-              //THEN, if it does exist, set state with that page's info, and push user to that page's view
-              if (page.id !== 0) {
-                console.log("navigating to ", this.state.day)
-                this.navigateToPage(page)
-              } else {
-                console.log("about to construct page ", this.state.month, this.state.day)
-              //else, if the page does not exist yet, construct an object for that page
-                this.constructNewPage()
-              }
-            })
-        }
+      this.setState({ loadingStatus: true });
+    //check to see if the page already exists in the database
+      PageManager.checkForPage(this.props.book_id, this.state.month, this.state.day)
+        .then(page => {
+          //THEN, if it does exist, set state with that page's info, and push user to that page's view
+          if (page.id !== 0) {
+            console.log("navigating to ", this.state.day)
+            this.navigateToPage(page)
+          } else {
+            console.log("about to construct page ", this.state.month, this.state.day)
+          //else, if the page does not exist yet, construct an object for that page
+            this.constructNewPage()
+          }
+        })
     }
 
 //update state with appropriate quotes whenever page is changed (called in componentDidUpdate in QuoteList)
@@ -220,9 +223,12 @@ class PageMain extends Component {
     componentDidMount () {
         BookDataManager.getBook(this.props.book_id)
             .then(book => {
-                this.setState({
-                    starts_blank: book.starts_blank
-                })
+              const d = new Date();
+              this.setState({
+                  starts_blank: book.starts_blank,
+                  currentMonth: this.state.monthOptions[d.getMonth()],
+                  currentDate: d.getDate().toString()
+              })
             })
     }
 
