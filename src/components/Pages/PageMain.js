@@ -73,7 +73,9 @@ class PageMain extends Component {
       })
       this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
       this.toggle()
-      this.toggleSidebar()
+      if (this.state.visible === true) {
+        this.toggleSidebar()
+      }
     }
 
     constructNewPage = () => {
@@ -117,7 +119,9 @@ class PageMain extends Component {
         } else {
           this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
           this.toggle()
-          this.toggleSidebar()
+          if (this.state.visible === true) {
+            this.toggleSidebar()
+          }
         }
       })
     }
