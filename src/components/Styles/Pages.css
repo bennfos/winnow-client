@@ -66,6 +66,8 @@ h1 {
 .quoteList__page {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .addRandomQuoteModal__container {
