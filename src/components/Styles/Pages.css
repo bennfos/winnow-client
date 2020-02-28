@@ -63,6 +63,11 @@ h1 {
     align-items: center;
 }
 
+.quoteList__page {
+  display: flex;
+  justify-content: space-between;
+}
+
 .addRandomQuoteModal__container {
     align-self: center;
 }

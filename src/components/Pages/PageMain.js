@@ -12,177 +12,168 @@ import BookDataManager from '../../API/BookManager'
 class PageMain extends Component {
 
     state = {
-        visible: false,
-        modal: false,
-        day: "",
-        month: "",
-        page_id: 0,
-        page: {},
-        quotes: [],
-        thought: "",
-        starts_blank: false,
-        monthOptions: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
-        loadingStatus: false
+      visible: false,
+      modal: false,
+      day: "",
+      month: "",
+      page_id: 0,
+      page: {},
+      quotes: [],
+      thought: "",
+      starts_blank: false,
+      monthOptions: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      loadingStatus: false
     }
 
     toggleSidebar = () => {
-        if (this.state.visible === false) {
-          this.setState({ visible: true })
-        } else {
-          this.setState({ visible: false })
-        }
+      if (this.state.visible === false) {
+        this.setState({ visible: true })
+      } else {
+        this.setState({ visible: false })
       }
+    }
 
     toggle = () => {
-        if (this.state.modal === false) {
-          this.setState({ modal: true })
-        } else {
-          this.setState({ modal: false })
-        }
+      if (this.state.modal === false) {
+        this.setState({ modal: true })
+      } else {
+        this.setState({ modal: false })
       }
+    }
 
       //set month in state when selected in month menu
     setMonth = (month) => {
-        this.setState({
-            month: month
-        })
+      this.setState({
+          month: month
+      })
+    }
+
+    setDay = (day) => {
+      this.setState({
+        day: day
+      })
     }
 
     //set day in state when day input button is selected in the month menu
     handleFieldChange = evt => {
-        const stateToChange = {};
-        stateToChange[evt.target.id] = evt.target.value;
-        this.setState(stateToChange);
-        console.log(this.state.day)
-    };
+      const stateToChange = {};
+      stateToChange[evt.target.id] = evt.target.value;
+      this.setState(stateToChange);
+    }
 
     navigateToPage = (page) => {
-        this.setState({
-            page: page,
-            month: page.month,
-            day: page.day,
-            page_id: page.id,
-            thought: page.thought
-        })
-        this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
-        this.toggle()
-        this.toggleSidebar()
+      this.setState({
+        page: page,
+        month: page.month,
+        day: page.day,
+        page_id: page.id,
+        thought: page.thought
+      })
+      this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
+      this.toggle()
+      this.toggleSidebar()
     }
 
     constructNewPage = () => {
-        const newPage = {
-            book_id: this.props.book_id,
-            month: this.state.month,
-            day: this.state.day,
-            thought: ""
-        };
-        console.log("constructed: ", newPage)
-        //post the page object to the database, THEN set state with that page's id, and push user to that page's view
-        PageManager.postPage(newPage)
-        .then(page => {
-            console.log("posted new page", page)
-            this.setState({
-                page_id: page.id
-            })
+      const newPage = {
+        book_id: this.props.book_id,
+        month: this.state.month,
+        day: this.state.day,
+        thought: ""
+      };
+      //post the page object to the database, THEN set state with that page's id, and push user to that page's view
+      PageManager.postPage(newPage)
+      .then(page => {
+        this.setState({
+            page_id: page.id
         })
-        .then(() => {
-            //then get a random quote
-            if (this.state.starts_blank === false) {
-                QuoteManager.getRandomQuote()
-
-            //then post quote for that page
-                .then(quote => {
-                    console.log("got random quote:", quote.quoteText)
-                    const initialQuote = {
-                        page_id: this.state.page_id,
-                        quote_text: quote.quoteText,
-                        quote_author: quote.quoteAuthor,
-                    };
-                    QuoteManager.postQuote(initialQuote)
-                        .then(quote => {
-                            console.log("random quote posted:", quote.quoteText)
-                            this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
-
-                            this.toggle()
-                            this.toggleSidebar()
-                        })
-                })
-
+      })
+      .then(() => {
+        //then get a random quote
+        if (this.state.starts_blank === false) {
+          QuoteManager.getRandomQuote()
+        //then post quote for that page
+            .then(quote => {
+              const initialQuote = {
+                page_id: this.state.page_id,
+                quote_text: quote.quoteText,
+                quote_author: quote.quoteAuthor
+              };
+              QuoteManager.postQuote(initialQuote)
+                .then(() => {
+                  this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
+                  this.toggle()
+                  this.toggleSidebar()
+              })
+            })
         } else {
-            console.log("pushing...")
-            this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
-            this.toggle()
-            this.toggleSidebar()
-         }
-    })
+          this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
+          this.toggle()
+          this.toggleSidebar()
+        }
+      })
     }
 
 //Construct or navigate to page (called in Month components)
     handlePageSelect = () => {
     //Validates user input
         if (this.state.day === "") {
-            alert("please select a day");
+          alert("please select a day");
         } else {
-            this.setState({ loadingStatus: true });
-
+          this.setState({ loadingStatus: true });
         //check to see if the page already exists in the database
-            PageManager.checkForPage(this.props.book_id, this.state.month, this.state.day)
-                .then(page => {
-
-                    //THEN, if it does exist, set state with that page's info, and push user to that page's view
-                    if (page.id !== 0) {
-                        console.log("navigating to ", this.state.day)
-                        this.navigateToPage(page)
-                    } else {
-                        console.log("about to construct page ", this.state.month, this.state.day)
-                    //else, if the page does not exist yet, construct an object for that page
-                        this.constructNewPage()
-                    }
-                })
-
+          PageManager.checkForPage(this.props.book_id, this.state.month, this.state.day)
+            .then(page => {
+              //THEN, if it does exist, set state with that page's info, and push user to that page's view
+              if (page.id !== 0) {
+                console.log("navigating to ", this.state.day)
+                this.navigateToPage(page)
+              } else {
+                console.log("about to construct page ", this.state.month, this.state.day)
+              //else, if the page does not exist yet, construct an object for that page
+                this.constructNewPage()
+              }
+            })
         }
-
     }
 
 //update state with appropriate quotes whenever page is changed (called in componentDidUpdate in QuoteList)
     renderPageQuotes = (page_id) => {
     //get quotes for the page that is passed in as an argument, and set them in state
-        console.log("page_id passed in to renderPageQuotes: ", page_id)
-        QuoteManager.getPageQuotes(page_id)
-          .then(quotes => {
-            this.setState({
-                quotes: quotes,
-            })
+      QuoteManager.getPageQuotes(page_id)
+        .then(quotes => {
+          this.setState({
+            quotes: quotes,
           })
+        })
     }
 
 //update state with appropriate thought whenever page is changed (called in componentDidUpdate ThoughtList)
     renderThought = (page_id) => {
     //get page data for page that is passed in as argument, and set thought in state
-        PageManager.getPage(page_id)
-            .then(page => {
-                this.setState({
-                    thought: page.thought
-                })
+      PageManager.getPage(page_id)
+        .then(page => {
+            this.setState({
+                thought: page.thought
             })
+        })
     }
 
     //Add quote and pageQuote to database (called in AddQuoteModal)
     addQuote = (newQuote, page_id) => {
-        console.log("newQuote in addQuote method: ", page_id, newQuote, )
-        //post new quote object to the database
-        return QuoteManager.postQuote(newQuote)
-            .then(quote => {
-                console.log("quote posted:", quote.quote_text)
-              //post the new pageQuote to the database
-                QuoteManager.getPageQuotes(page_id)
-                .then(quotes => {
-                    this.setState({
-                        quotes: quotes
-                })
-              });
-            });
-    };
+      //post new quote object to the database
+      return QuoteManager.postQuote(newQuote)
+        .then(quote => {
+            console.log("quote posted:", quote.quote_text)
+          //post the new pageQuote to the database
+            QuoteManager.getPageQuotes(page_id)
+            .then(quotes => {
+              this.setState({
+                quotes: quotes
+            })
+          })
+        })
+    }
 
 
 //put edited quote object in database, then get all quotes for that page and set them in state (called in EditQuoteModal)
@@ -226,9 +217,6 @@ class PageMain extends Component {
         })
     }
 
-
-
-
     componentDidMount () {
         BookDataManager.getBook(this.props.book_id)
             .then(book => {
@@ -245,18 +233,17 @@ class PageMain extends Component {
         <>
             <div className="pageSelect">
                 <Menu
-                    fluid widths={1}
-                    borderless
-                    fixed="top"
-                    inverted
-                    color="grey"
-                    >
-                        <Menu.Item
-
-                            onClick={this.toggleSidebar}
-                            icon="chevron down"
-                        >
-                        </Menu.Item>
+                  fluid widths={1}
+                  borderless
+                  fixed="top"
+                  inverted
+                  color="grey"
+                >
+                  <Menu.Item
+                    onClick={this.toggleSidebar}
+                    icon="chevron down"
+                  >
+                  </Menu.Item>
                 </Menu>
             <div className="spacer"></div>
             <Sidebar.Pushable animation='push'>
@@ -273,34 +260,36 @@ class PageMain extends Component {
                     className="sidebar__menu"
                 >
                 {this.state.monthOptions.map(monthSelect => (
-                    <PageSelect
-                        key={monthSelect}
-                        setMonth={this.setMonth}
-                        toggleSidebar={this.toggleSidebar}
-                        toggle={this.toggle}
-                        handleFieldChange={this.handleFieldChange}
-                        handlePageSelect={this.handlePageSelect}
-                        monthSelect={monthSelect}
-                        day={this.state.day}
-                        {...this.props}
-                    />
+                  <PageSelect
+                    key={monthSelect}
+                    setMonth={this.setMonth}
+                    toggleSidebar={this.toggleSidebar}
+                    toggle={this.toggle}
+                    handleFieldChange={this.handleFieldChange}
+                    handlePageSelect={this.handlePageSelect}
+                    monthSelect={monthSelect}
+                    day={this.state.day}
+                    {...this.props}
+                  />
                 ))}
 
             </Sidebar>
 
             </div>
             <Sidebar.Pusher className="sidebar__pusher" dimmed={this.state.visible}>
-                <PageViews
-                    thought={this.state.thought}
-                    putEditedQuote={this.putEditedQuote}
-                    addQuote={this.addQuote}
-                    removeQuote={this.removeQuote}
-                    putThought={this.putThought}
-                    renderThought={this.renderThought}
-                    renderPageQuotes={this.renderPageQuotes}
-                    quotes={this.state.quotes}
-                    {...this.props}
-                />
+              <PageViews
+                thought={this.state.thought}
+                putEditedQuote={this.putEditedQuote}
+                addQuote={this.addQuote}
+                removeQuote={this.removeQuote}
+                putThought={this.putThought}
+                renderThought={this.renderThought}
+                renderPageQuotes={this.renderPageQuotes}
+                quotes={this.state.quotes}
+                setMonth={this.setMonth}
+                setDay={this.setDay}
+                {...this.props}
+              />
             </Sidebar.Pusher>
             </Sidebar.Pushable>
 
