@@ -67,7 +67,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 340px;
 }
 
 .addRandomQuoteModal__container {

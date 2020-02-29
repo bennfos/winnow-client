@@ -33,7 +33,9 @@ class QuoteList extends Component {
       if (dir === "next") {
         console.log("day in props: ", parseInt(this.props.day))
         console.log(`days in this month of ${this.props.month}: ${this.state.daysOfMonth.length}`)
-        if (parseInt(this.props.day) !== this.state.daysOfMonth.lastIndexOf) {
+        console.log("dayInt: ", parseInt(this.props.day))
+        console.log("days in this month: ", this.state.daysOfMonth.length)
+        if (parseInt(this.props.day) < this.state.daysOfMonth.length) {
           console.log("Not the end of the month")
           const nextDayInt = parseInt(this.props.day) + 1
           this.props.setDay(nextDayInt.toString())
