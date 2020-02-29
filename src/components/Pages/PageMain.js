@@ -227,18 +227,6 @@ class PageMain extends Component {
         })
     }
 
-    componentWillUpdate () {
-      this.setState({
-        loadingStatus: true
-      })
-    }
-
-    componentDidUpdate () {
-      this.setState({
-        loadingStatus: false
-      })
-    }
-
     componentDidMount () {
         BookDataManager.getBook(this.props.book_id)
             .then(book => {
@@ -250,7 +238,6 @@ class PageMain extends Component {
               })
             })
     }
-
 
     render() {
         const { visible } = this.state
