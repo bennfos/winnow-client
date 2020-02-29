@@ -62,9 +62,11 @@ class QuoteList extends Component {
       this.setDaysOfMonth()
     }
 
+
 //When component receives new page_id in props (i.e., page is changed) from PageMain, update state in PageMain to cause a rerender of QuoteList
     componentDidUpdate(prevProps) {
       if (this.props.page_id !== prevProps.page_id) {
+        this.setDaysOfMonth()
         this.props.renderPageQuotes(this.props.page_id)
       }
     }
