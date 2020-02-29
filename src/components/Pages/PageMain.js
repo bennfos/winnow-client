@@ -126,10 +126,15 @@ class PageMain extends Component {
       })
     }
 
+    handlePageChange = () => {
+      this.setState({loadingStatus: true},
+        this.handlePageSelect
+      )
+    }
+
 //Construct or navigate to page (called in Month components)
     handlePageSelect = () => {
     //check to see if the page already exists in the database
-    this.setState({loadingStatus: true},
       PageManager.checkForPage(this.props.book_id, this.state.month, this.state.day)
         .then(page => {
           //THEN, if it does exist, set state with that page's info, and push user to that page's view
@@ -142,8 +147,7 @@ class PageMain extends Component {
           //else, if the page does not exist yet, construct an object for that page
             this.constructNewPage()
           }
-        }
-      ))
+        })
       this.setState({loadingStatus: false})
     }
 
@@ -300,7 +304,7 @@ class PageMain extends Component {
                 quotes={this.state.quotes}
                 setMonth={this.setMonth}
                 setDay={this.setDay}
-                handlePageSelect={this.handlePageSelect}
+                handlePageChange={this.handlePageChange}
                 {...this.props}
               />
             </Sidebar.Pusher>

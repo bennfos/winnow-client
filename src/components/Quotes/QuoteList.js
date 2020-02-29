@@ -53,7 +53,7 @@ class QuoteList extends Component {
         //   day: prevDay.toString()
         // })
       }
-      this.props.handlePageSelect()
+      this.props.handlePageChange()
   }
 
 //when component mounts, update state of pageQuotes in PageMain
