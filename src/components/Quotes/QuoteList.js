@@ -12,8 +12,7 @@ class QuoteList extends Component {
     months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
   }
 
-  setDaysOfMonth = () => {
-    const month = this.props.month
+  setDaysOfMonth = (month) => {
     const daysOfMonth = []
     for (let i = 1; i <= 31; i++) {
       daysOfMonth.push(i)
@@ -39,21 +38,42 @@ class QuoteList extends Component {
           console.log("Not the end of the month")
           const nextDayInt = parseInt(this.props.day) + 1
           this.props.setDay(nextDayInt.toString())
-          console.log(`the next day is ${nextDayInt.toString()}`)
+          console.log(`the next day is ${nextDayInt}`)
           console.log(`day in props: ${this.props.day}`)
         } else {
           console.log("It's the end of the month!")
           const currentMonthIndex = this.state.months.indexOf(this.props.month)
-          const nextMonth = this.state.months[currentMonthIndex + 1]
+          let nextMonth = ""
+          if (currentMonthIndex !== 11) {
+            nextMonth = this.state.months[currentMonthIndex + 1]
+          } else {
+            nextMonth = this.state.months[0]
+          }
           console.log(`the next month is ${nextMonth}`)
           this.props.setMonth(nextMonth)
           this.props.setDay("1")
         }
       } else {
-        // const prevDay = parseInt(this.props.day) - 1
-        // this.setState({
-        //   day: prevDay.toString()
-        // })
+        if (this.props.day !== "1") {
+          console.log("Not the beginning of the month")
+          const prevDayInt = parseInt(this.props.day) - 1
+          this.props.setDay(prevDayInt.toString())
+          console.log(`the prev day is ${prevDayInt}`)
+          console.log(`day in props: ${this.props.day}`)
+        } else {
+          console.log("It's the beginning of the month!")
+          const currentMonthIndex = this.state.months.indexOf(this.props.month)
+          let prevMonth = ""
+          if (currentMonthIndex !== 0) {
+            prevMonth = this.state.months[currentMonthIndex - 1]
+          } else {
+            prevMonth = this.state.months[11]
+          }
+          console.log(`the prev month is ${prevMonth}`)
+          this.setDaysOfMonth(prevMonth)
+          this.props.setMonth(prevMonth)
+          this.props.setDay(this.state.daysOfMonth.lastIndexOf)
+        }
       }
       this.props.handlePageChange()
   }
@@ -68,7 +88,7 @@ class QuoteList extends Component {
 //When component receives new page_id in props (i.e., page is changed) from PageMain, update state in PageMain to cause a rerender of QuoteList
     componentDidUpdate(prevProps) {
       if (this.props.page_id !== prevProps.page_id) {
-        this.setDaysOfMonth()
+        this.setDaysOfMonth(this.props.month)
         this.props.renderPageQuotes(this.props.page_id)
       }
     }
