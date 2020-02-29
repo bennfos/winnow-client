@@ -38,7 +38,7 @@ class QuoteList extends Component {
           const nextDayInt = parseInt(this.props.day) + 1
           this.props.setDay(nextDayInt.toString())
           console.log(`the next day is ${nextDayInt.toString()}`)
-          console.log(`day in state: ${this.props.day}`)
+          console.log(`day in props: ${this.props.day}`)
         } else {
           console.log("It's the end of the month!")
           const currentMonthIndex = this.state.months.indexOf(this.props.month)
@@ -48,10 +48,10 @@ class QuoteList extends Component {
           this.props.setDay("1")
         }
       } else {
-        const prevDay = parseInt(this.props.day) - 1
-        this.setState({
-          day: prevDay.toString()
-        })
+        // const prevDay = parseInt(this.props.day) - 1
+        // this.setState({
+        //   day: prevDay.toString()
+        // })
       }
       this.props.handlePageSelect()
   }
