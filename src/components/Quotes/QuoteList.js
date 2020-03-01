@@ -54,7 +54,6 @@ class QuoteList extends Component {
         if (this.props.day !== "1") {
           console.log("Not the beginning of the month")
           const prevDayInt = parseInt(this.props.day) - 1
-          this.props.setDay(prevDayInt.toString())
           console.log(`the prev day is ${prevDayInt}`)
           console.log(`day in props: ${this.props.day}`)
           this.props.changeMonthAndDay(this.props.month, prevDayInt.toString())
