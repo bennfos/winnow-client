@@ -8,16 +8,16 @@ import PageSelect from './PageSelect'
 import BookDataManager from '../../API/BookManager'
 
 
-
+const d = new Date();
 class PageMain extends Component {
 
     state = {
       visible: false,
       modal: false,
-      currentMonth: "",
-      currentDate: "",
-      day: "",
-      month: "",
+      currentMonth: d.getMonth(),
+      currentDate: d.getDate.toString(),
+      day: d.getDate.toString(),
+      month: d.getMonth(),
       page_id: 0,
       page: {},
       quotes: [],
@@ -234,11 +234,8 @@ class PageMain extends Component {
     componentDidMount () {
         BookDataManager.getBook(this.props.book_id)
             .then(book => {
-              const d = new Date();
               this.setState({
                   starts_blank: book.starts_blank,
-                  currentMonth: this.state.monthOptions[d.getMonth()],
-                  currentDate: d.getDate().toString()
               })
             })
     }
