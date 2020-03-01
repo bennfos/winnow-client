@@ -67,17 +67,26 @@ class QuoteList extends Component {
           } else {
             prevMonth = this.state.months[11]
           }
-          this.daysOfMonth(prevMonth)
+          this.setState({
+            daysOfMonth:  this.daysOfMonth(prevMonth)
+          }, () => {
+            const lastDay = this.state.daysOfMonth.length
+            console.log("last day: ", lastDay)
+            this.props.setMonth(prevMonth)
+            this.props.setDay(lastDay.toString())
+          })
           console.log(`the prev month is ${prevMonth}`)
-          this.props.setMonth(prevMonth)
           console.log("days in ", prevMonth, ":", this.state.daysOfMonth)
-          const lastDay = this.state.daysOfMonth.length
-          console.log("last day: ", lastDay)
-          this.props.setDay(lastDay.toString())
         }
       }
       this.props.handlePageChange()
   }
+
+  setMonthAndDay = (month, day) => {
+    this.props.setMonth(month)
+    this.props.setDay(day)
+  }
+
 
 //when component mounts, update state of pageQuotes in PageMain
     componentDidMount() {
