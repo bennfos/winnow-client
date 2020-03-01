@@ -51,7 +51,6 @@ class QuoteList extends Component {
           this.props.setMonth(nextMonth)
           this.props.setDay("1")
         }
-        this.props.handlePageChange()
       } else {
         if (this.props.day !== "1") {
           console.log("Not the beginning of the month")
@@ -70,17 +69,13 @@ class QuoteList extends Component {
           }
           console.log(`the prev month is ${prevMonth}`)
           this.props.setMonth(prevMonth)
-          this.setState({
-            daysOfMonth: this.daysOfMonth(prevMonth)
-          }, function () {
-            console.log("days in ", prevMonth, ":", this.state.daysOfMonth)
-            const lastDay = this.state.daysOfMonth.length
-            console.log("last day: ", lastDay)
-            this.props.setDay(lastDay.toString())
-          })
+          console.log("days in ", prevMonth, ":", this.state.daysOfMonth)
+          const lastDay = this.state.daysOfMonth.length
+          console.log("last day: ", lastDay)
+          this.props.setDay(lastDay.toString())
         }
-        this.props.handlePageChange()
       }
+      this.props.handlePageChange()
   }
 
 //when component mounts, update state of pageQuotes in PageMain
