@@ -306,7 +306,7 @@ class PageMain extends Component {
                 renderThought={this.renderThought}
                 renderPageQuotes={this.renderPageQuotes}
                 quotes={this.state.quotes}
-                changeMonthAndDay={this.props.changeMonthAndDay}
+                changeMonthAndDay={this.changeMonthAndDay}
                 {...this.props}
               />
             </Sidebar.Pusher>
