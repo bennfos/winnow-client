@@ -56,6 +56,13 @@ class PageMain extends Component {
       })
     }
 
+    changeMonthAndDay = (month, day) => {
+      this.setState({
+        month: month,
+        day: day
+      }, this.handlePageChange)
+    }
+
     //set day in state when day input button is selected in the month menu
     handleFieldChange = evt => {
       const stateToChange = {};
@@ -299,9 +306,7 @@ class PageMain extends Component {
                 renderThought={this.renderThought}
                 renderPageQuotes={this.renderPageQuotes}
                 quotes={this.state.quotes}
-                setMonth={this.setMonth}
-                setDay={this.setDay}
-                handlePageChange={this.handlePageChange}
+                changeMonthAndDay={this.props.changeMonthAndDay}
                 {...this.props}
               />
             </Sidebar.Pusher>
