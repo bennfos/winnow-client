@@ -15,7 +15,7 @@ class PageMain extends Component {
       visible: false,
       modal: false,
       currentMonth: d.getMonth(),
-      currentDate: d.getDate.toString(),
+      currentDate: d.getDate().toString(),
       day: d.getDate.toString(),
       month: d.getMonth(),
       page_id: 0,
