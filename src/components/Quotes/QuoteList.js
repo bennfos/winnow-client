@@ -67,6 +67,7 @@ class QuoteList extends Component {
           } else {
             prevMonth = this.state.months[11]
           }
+          this.daysOfMonth(prevMonth)
           console.log(`the prev month is ${prevMonth}`)
           this.props.setMonth(prevMonth)
           console.log("days in ", prevMonth, ":", this.state.daysOfMonth)
