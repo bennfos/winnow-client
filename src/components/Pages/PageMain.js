@@ -128,11 +128,11 @@ class PageMain extends Component {
 
     handlePageChange = () => {
       this.setState({loadingStatus: true},
-        setTimeout(this.handlePageSelect, 800)
+        this.handlePageSelect
       )
     }
 
-//Construct or navigate to page (called in Month components)
+//Construct or navigate to page (called in PageSelect)
     handlePageSelect = () => {
     //check to see if the page already exists in the database
       PageManager.checkForPage(this.props.book_id, this.state.month, this.state.day)
