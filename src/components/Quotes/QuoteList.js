@@ -12,7 +12,7 @@ class QuoteList extends Component {
     months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
   }
 
-  setDaysOfMonth = (month) => {
+  daysOfMonth = (month) => {
     const daysOfMonth = []
     for (let i = 1; i <= 31; i++) {
       daysOfMonth.push(i)
@@ -23,9 +23,7 @@ class QuoteList extends Component {
     } else if (month === "september" || month === "april" || month === "june" || month === "november") {
       daysOfMonth.pop()
     }
-    this.setState({
-      daysOfMonth: daysOfMonth
-    })
+    return daysOfMonth
   }
 
   changeDay = (dir) => {
@@ -70,10 +68,15 @@ class QuoteList extends Component {
             prevMonth = this.state.months[11]
           }
           console.log(`the prev month is ${prevMonth}`)
-          this.setDaysOfMonth(prevMonth)
           this.props.setMonth(prevMonth)
-          const lastDay = this.state.daysOfMonth[this.state.daysOfMonth.length]
-          this.props.setDay(lastDay.toString())
+          this.setState({
+            daysOfMonth: this.daysOfMonth(prevMonth)
+          }, function () {
+            console.log("days in ", prevMonth, ":", this.state.daysOfMonth)
+            const lastDay = this.state.daysOfMonth[this.state.daysOfMonth.length]
+            console.log("last day: ", lastDay)
+            this.props.setDay(lastDay.toString())
+          })
         }
       }
       this.props.handlePageChange()
@@ -82,14 +85,18 @@ class QuoteList extends Component {
 //when component mounts, update state of pageQuotes in PageMain
     componentDidMount() {
       this.props.renderPageQuotes(this.props.page_id)
-      this.setDaysOfMonth()
+      this.setState({
+        daysOfMonth: this.daysOfMonth(this.props.month)
+      })
     }
 
 
 //When component receives new page_id in props (i.e., page is changed) from PageMain, update state in PageMain to cause a rerender of QuoteList
     componentDidUpdate(prevProps) {
       if (this.props.page_id !== prevProps.page_id) {
-        this.setDaysOfMonth(this.props.month)
+        this.setState({
+          daysOfMonth: this.daysOfMonth(this.props.month)
+        })
         this.props.renderPageQuotes(this.props.page_id)
       }
     }
