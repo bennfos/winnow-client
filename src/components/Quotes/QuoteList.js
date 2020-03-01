@@ -72,7 +72,8 @@ class QuoteList extends Component {
           console.log(`the prev month is ${prevMonth}`)
           this.setDaysOfMonth(prevMonth)
           this.props.setMonth(prevMonth)
-          this.props.setDay(this.state.daysOfMonth[this.state.daysOfMonth.length].toString())
+          const lastDay = this.state.daysOfMonth[this.state.daysOfMonth.length]
+          this.props.setDay(lastDay.toString())
         }
       }
       this.props.handlePageChange()
