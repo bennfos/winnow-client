@@ -128,7 +128,7 @@ class PageMain extends Component {
 
     handlePageChange = () => {
       this.setState({loadingStatus: true},
-        this.handlePageSelect
+        setTimeout(this.handlePageSelect, 800)
       )
     }
 
