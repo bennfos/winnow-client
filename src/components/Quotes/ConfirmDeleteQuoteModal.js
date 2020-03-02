@@ -29,7 +29,7 @@ class ConfirmDeleteQuoteModal extends Component {
                   className="delete__icon"
                   name="trash alternate"
                   onClick={this.toggle}
-                  size="large">
+              >
               </Icon>
 
               <div>

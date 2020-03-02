@@ -75,9 +75,9 @@ class EditQuoteModal extends Component {
           <>
             <div className="editWithPipe">
               <Icon
-                  onClick={this.toggle}
-                  name='edit'
-                  size="large">
+                onClick={this.toggle}
+                name='edit'
+              >
               </Icon>
               <h1>|</h1>
             </div>
