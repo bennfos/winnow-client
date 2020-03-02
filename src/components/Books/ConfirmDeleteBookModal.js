@@ -30,10 +30,9 @@ class ConfirmDeleteBookModal extends Component {
             <>
                 <section>
                     <Icon
-                        className="delete__icon"
-                        name="trash alternate outline"
-                        onClick={this.toggle}
-                        size="large"
+                      className="delete__icon"
+                      name="trash alternate outline"
+                      onClick={this.toggle}
                     >
                     </Icon>
                 </section>

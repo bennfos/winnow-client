@@ -74,7 +74,7 @@ class EditBookModal extends Component {
                 <Icon
                   onClick={this.toggle}
                   name='edit outline'
-                  size='large'>
+                  >
                 </Icon>
                 <h1>|</h1>
               </div>
