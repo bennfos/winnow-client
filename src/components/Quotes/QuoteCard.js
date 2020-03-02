@@ -19,11 +19,11 @@ class QuoteCard extends Component {
 
 
 
-      toggle = () => {
-        this.setState(prevState => ({
-            visible: !prevState.visible
-        }));
-    }
+    toggle = () => {
+      this.setState(prevState => ({
+          visible: !prevState.visible
+      }));
+  }
 
 
 //get random quote from Forismatic API and set it in state (not used yet--stretch goal)
