@@ -6,7 +6,6 @@ class ConfirmDeleteQuoteModal extends Component {
 
 //Defines initial state
     state = {
-
             modal: false
         };
 

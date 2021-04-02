@@ -95,13 +95,17 @@ class AddRandomQuoteModal extends Component {
                             </ModalHeader>
                         </div>
                             <ModalBody>
+                                <h3>{this.state.quoteText}</h3>
+                                <h5>{this.state.quoteAuthor}</h5>
                                 <Input onChange={this.handleFieldChange}
+                                        hidden
                                         disabled
                                         type="textarea"
                                         id="quote_text"
                                         value={this.state.quoteText}
                                     /><br/>
                                 <Input onChange={this.handleFieldChange}
+                                        hidden
                                         disabled
                                         type="text"
                                         id="quote_author"
