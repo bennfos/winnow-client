@@ -46,6 +46,7 @@ class PageSelect extends Component {
                     : monthSelected === "october" || monthSelected === "november" ? "whale"
                     : monthSelected === "december" || monthSelected === "january" ? "thunderbird"
                     : "serpent"
+        let menuDisplay = this.props.editMode === true ? god : monthSelected
         return(
             <>
               <Menu.Item
@@ -54,7 +55,7 @@ class PageSelect extends Component {
                     this.pushDaysOfMonth()
                     this.toggle()
                 }}
-                >{this.props.editMode} ? {god} : {monthSelected}
+                >{menuDisplay}
               </Menu.Item>
               <Modal
                   isOpen={this.state.modal}

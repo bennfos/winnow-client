@@ -95,8 +95,8 @@ class AddRandomQuoteModal extends Component {
                             </ModalHeader>
                         </div>
                             <ModalBody>
-                                <h3>{this.state.quoteText}</h3>
-                                <h5>{this.state.quoteAuthor}</h5>
+                                <h4>{this.state.quoteText}</h4>
+                                <h5 className="author">{this.state.quoteAuthor}</h5>
                                 <Input onChange={this.handleFieldChange}
                                         hidden
                                         disabled
