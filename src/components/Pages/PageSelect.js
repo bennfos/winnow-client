@@ -40,12 +40,12 @@ class PageSelect extends Component {
 
     render(){
         const monthSelected = this.props.monthSelect
-        let god = monthSelected === "april" || monthSelected === "may" ? "mut"
-                    : monthSelected === "june" || monthSelected === "july" ? "rodent"
-                    : monthSelected === "august" || monthSelected === "september" ? "sloth"
-                    : monthSelected === "october" || monthSelected === "november" ? "whale"
+        let god = monthSelected === "april" || monthSelected === "may" ? "cadejo"
+                    : monthSelected === "june" || monthSelected === "july" ? "bohemoth"
+                    : monthSelected === "august" || monthSelected === "september" ? "akedia"
+                    : monthSelected === "october" || monthSelected === "november" ? "leviathan"
                     : monthSelected === "december" || monthSelected === "january" ? "thunderbird"
-                    : "serpent"
+                    : "python"
         let menuDisplay = this.props.editMode === true ? god : monthSelected
         return(
             <>
