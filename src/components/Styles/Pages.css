@@ -41,6 +41,13 @@
   align-items: center;
 }
 
+.moveWithPipe {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 4px;
+}
+
 h1 {
   align-self: center;
 }
