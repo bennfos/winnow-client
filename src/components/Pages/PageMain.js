@@ -21,6 +21,7 @@ class PageMain extends Component {
       page_id: 0,
       page: {},
       quotes: [],
+      quoteIdToMove: 0,
       thought: "",
       starts_blank: false,
       monthOptions: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
@@ -30,6 +31,14 @@ class PageMain extends Component {
     toggleSidebar = () => {
       if (this.state.visible === false) {
         this.setState({ visible: true })
+      } else {
+        this.setState({ visible: false })
+      }
+    }
+
+    toggleSidebarToMoveQuote = (quoteId) => {
+      if (this.state.visible === false) {
+        this.setState({ visible: true, quoteIdToMove: quoteId })
       } else {
         this.setState({ visible: false })
       }
@@ -299,6 +308,7 @@ class PageMain extends Component {
             <Sidebar.Pusher className="sidebar__pusher" dimmed={this.state.visible}>
               <PageViews
                 thought={this.state.thought}
+                toggleSidebar={this.toggleSidebar}
                 putEditedQuote={this.putEditedQuote}
                 addQuote={this.addQuote}
                 removeQuote={this.removeQuote}

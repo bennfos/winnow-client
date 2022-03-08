@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import QuoteManager from '../../API/QuoteManager'
 import EditQuoteModal from '../Quotes/EditQuoteModal'
+import PageSelect from '../Pages/PageSelect'
 import ConfirmDeleteQuoteModal from './ConfirmDeleteQuoteModal';
-import { Transition } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 import { Fade } from 'reactstrap'
 import '../Styles/Pages.css'
 
@@ -56,6 +57,13 @@ class QuoteCard extends Component {
                           <div className="edit">
                             <EditQuoteModal
                               {...this.props}/>
+                          </div>
+                          <div className="move">
+                            <Icon
+                              onClick={() => this.props.toggleSidebarToMoveQuote(this.props.quote.id)}
+                              name='calendar alternate outline'
+                            >
+                            </Icon>
                           </div>
                           <div className="delete">
                             <ConfirmDeleteQuoteModal
