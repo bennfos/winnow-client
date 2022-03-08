@@ -166,6 +166,7 @@ class PageMain extends Component {
           }
 
           if (this.movingQuote) {
+            this.quoteToMove.page_id = page.id;
             this.putEditedQuote(this.quoteToMove)
           }
         })
