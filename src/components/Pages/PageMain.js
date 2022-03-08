@@ -309,7 +309,7 @@ class PageMain extends Component {
               <PageViews
                 thought={this.state.thought}
                 toggleSidebar={this.toggleSidebar}
-                toggleSidebar={this.toggleSidebarToMoveQuote}
+                toggleSidebarToMoveQuote={this.toggleSidebarToMoveQuote}
                 putEditedQuote={this.putEditedQuote}
                 addQuote={this.addQuote}
                 removeQuote={this.removeQuote}
