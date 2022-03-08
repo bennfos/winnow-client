@@ -3,14 +3,15 @@ import QuoteCard from './QuoteCard'
 import AddQuoteModal from './AddQuoteModal'
 import AddRandomQuoteModal from './AddRandomQuoteModal'
 import { Icon } from 'semantic-ui-react'
+import { Fade } from 'reactstrap'
 import '../Styles/Pages.css'
-
 
 class QuoteList extends Component {
   state = {
     daysOfMonth: [],
     months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
-    visible: false
+    visible: false,
+    fadeIn: true
   }
 
   daysOfMonth = (month) => {
@@ -87,9 +88,16 @@ class QuoteList extends Component {
         <React.Fragment>
           <div className="quoteList__contents">
             <div className="addRandomQuoteModal__container">
-              <AddRandomQuoteModal
+            <Fade in={this.state.visible}>
+
+                <div className="addRandomQuoteModal__container">
+                <AddRandomQuoteModal
                     {...this.props}
-              />
+                />
+                </div>
+
+            </Fade>
+
             </div>
             <div className="quoteList__header">
               <div className="quoteList__page">
@@ -108,6 +116,7 @@ class QuoteList extends Component {
                 </Icon>
               </div>
               <div className="addQuoteModal">
+
                 <AddQuoteModal
                   {...this.props}/>
               </div>

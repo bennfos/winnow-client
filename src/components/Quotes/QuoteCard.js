@@ -6,8 +6,6 @@ import { Transition } from 'semantic-ui-react'
 import { Fade } from 'reactstrap'
 import '../Styles/Pages.css'
 
-
-
 class QuoteCard extends Component {
     state = {
         randomQuoteText: "",
@@ -16,15 +14,11 @@ class QuoteCard extends Component {
         fadeIn: true
     }
 
-
-
-
     toggle = () => {
       this.setState(prevState => ({
           visible: !prevState.visible
       }));
   }
-
 
 //get random quote from Forismatic API and set it in state (not used yet--stretch goal)
   getRandom = () => {
@@ -48,7 +42,6 @@ class QuoteCard extends Component {
       this.toggle();
     }
   }
-
 
   render() {
     return (
