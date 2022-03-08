@@ -19,9 +19,11 @@ class AddQuoteModal extends Component {
 
 //toggles modal
     toggle = () => {
+      if (this.props.editMode === true) {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
+      }
     }
 
     toggleVisibility = () => {
