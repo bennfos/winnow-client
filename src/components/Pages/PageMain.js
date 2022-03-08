@@ -66,6 +66,12 @@ class PageMain extends Component {
       })
     }
 
+    setQuoteToMove = (quote) => {
+      this.setState({
+        quoteToMove: quote
+      })
+    }
+
     changeMonthAndDay = (month, day) => {
       this.setState({
         month: month,
@@ -165,9 +171,12 @@ class PageMain extends Component {
             this.constructNewPage()
           }
 
-          if (this.movingQuote) {
-            this.quoteToMove.page_id = page.id;
-            this.putEditedQuote(this.quoteToMove)
+          if (this.state.movingQuote) {
+            var newQuote = {
+              id: this.state.quoteToMove.id,
+              page_id: page.id,
+            }
+            this.putEditedQuote(this.quoteToMove, page.id)
           }
         })
       this.setState({loadingStatus: false})
