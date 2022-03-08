@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import { Icon, Button } from 'semantic-ui-react'
+import { Fade } from 'reactstrap'
 
 
 class AddQuoteModal extends Component {
@@ -10,8 +11,10 @@ class AddQuoteModal extends Component {
         quote_text: "",
         quote_author: "",
         modal: false,
+        visible: false,
         loadingStatus: false
     };
+
 
 
 //toggles modal
@@ -20,6 +23,12 @@ class AddQuoteModal extends Component {
             modal: !prevState.modal
         }));
     }
+
+    toggleVisibility = () => {
+      this.setState(prevState => ({
+          visible: !prevState.visible
+      }));
+  }
 
 //Sets state with input values as fields change
     handleFieldChange = evt => {
@@ -64,15 +73,30 @@ class AddQuoteModal extends Component {
         })
     }
 
+    componentDidMount () {
+      if (this.props.editMode === true) {
+        this.toggleVisibility()
+      }
+     }
+
+    componentDidUpdate(prevProps) {
+      if (this.props.editMode !== prevProps.editMode) {
+        this.toggleVisibility();
+      }
+    }
+
     render(){
         return(
             <>
+            <Fade in={this.state.visible}>
                 <section className="addQuote__button">
                     <Icon
                       onClick={this.toggle}
                       name="add">
                     </Icon>
                 </section>
+            </Fade>
+
                 <div>
                     <Modal
                         autoFocus={false}

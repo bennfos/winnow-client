@@ -3,7 +3,6 @@ import QuoteCard from './QuoteCard'
 import AddQuoteModal from './AddQuoteModal'
 import AddRandomQuoteModal from './AddRandomQuoteModal'
 import { Icon } from 'semantic-ui-react'
-import { Fade } from 'reactstrap'
 import '../Styles/Pages.css'
 
 class QuoteList extends Component {
@@ -88,16 +87,9 @@ class QuoteList extends Component {
         <React.Fragment>
           <div className="quoteList__contents">
             <div className="addRandomQuoteModal__container">
-            <Fade in={this.state.visible}>
-
-                <div className="addRandomQuoteModal__container">
                 <AddRandomQuoteModal
                     {...this.props}
                 />
-                </div>
-
-            </Fade>
-
             </div>
             <div className="quoteList__header">
               <div className="quoteList__page">
