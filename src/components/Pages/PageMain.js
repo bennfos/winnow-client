@@ -176,7 +176,7 @@ class PageMain extends Component {
               id: this.state.quoteToMove.id,
               page_id: page.id,
             }
-            this.putEditedQuote(this.quoteToMove, page.id)
+            this.putEditedQuote(newQuote, page.id)
           }
         })
       this.setState({loadingStatus: false})
