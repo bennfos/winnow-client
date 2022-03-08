@@ -60,7 +60,7 @@ class QuoteCard extends Component {
                           </div>
                           <div className="move">
                             <Icon
-                              onClick={() => this.props.toggleSidebarToMoveQuote(this.props.quote.id)}
+                              onClick={() => this.props.toggleSidebarToMoveQuote(this.props.quote)}
                               name='calendar alternate outline'
                             >
                             </Icon>

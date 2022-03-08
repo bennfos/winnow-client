@@ -21,7 +21,8 @@ class PageMain extends Component {
       page_id: 0,
       page: {},
       quotes: [],
-      quoteIdToMove: 0,
+      movingQuote: false,
+      quoteToMove: {},
       thought: "",
       starts_blank: false,
       monthOptions: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
@@ -32,13 +33,13 @@ class PageMain extends Component {
       if (this.state.visible === false) {
         this.setState({ visible: true })
       } else {
-        this.setState({ visible: false })
+        this.setState({ visible: false, movingQuote: false, quoteToMove: {} })
       }
     }
 
-    toggleSidebarToMoveQuote = (quoteId) => {
+    toggleSidebarToMoveQuote = (quote) => {
       if (this.state.visible === false) {
-        this.setState({ visible: true, quoteIdToMove: quoteId })
+        this.setState({ visible: true, movingQuote: true, quoteToMove: quote })
       } else {
         this.setState({ visible: false })
       }
@@ -162,6 +163,10 @@ class PageMain extends Component {
             console.log("about to construct page ", this.state.month, this.state.day)
           //else, if the page does not exist yet, construct an object for that page
             this.constructNewPage()
+          }
+
+          if (this.movingQuote) {
+            this.putEditedQuote(this.quoteToMove)
           }
         })
       this.setState({loadingStatus: false})
