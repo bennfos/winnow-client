@@ -64,6 +64,7 @@ class QuoteCard extends Component {
                               name='calendar alternate outline'
                             >
                             </Icon>
+                            <h1>|</h1>
                           </div>
                           <div className="delete">
                             <ConfirmDeleteQuoteModal
