@@ -40,7 +40,7 @@ class PageSelect extends Component {
 
     render(){
         const monthSelected = this.props.monthSelect
-        let god = monthSelected === "april" || monthSelected === "may" ? "cadejo"
+        let god = monthSelected + "-" + monthSelected === "april" || monthSelected === "may" ? "cadejo"
                     : monthSelected === "june" || monthSelected === "july" ? "bohemoth"
                     : monthSelected === "august" || monthSelected === "september" ? "akedia"
                     : monthSelected === "october" || monthSelected === "november" ? "leviathan"
