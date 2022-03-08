@@ -94,6 +94,13 @@ class PageMain extends Component {
         page_id: page.id,
         thought: page.thought
       })
+      if (this.state.movingQuote) {
+        var newQuote = {
+          id: this.state.quoteToMove.id,
+          page_id: this.state.page_id,
+        }
+        this.putEditedQuote(newQuote, this.state.page_id)
+      }
       this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
       this.toggle()
       if (this.state.visible === true) {
@@ -136,15 +143,22 @@ class PageMain extends Component {
                 .then(() => {
                   this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
                   this.toggle()
-                  this.toggleSidebar()
               })
             })
         } else {
           this.props.history.push(`/books/${this.props.book_id}/${this.state.page_id}/${this.state.month}/${this.state.day}`)
           this.toggle()
-          if (this.state.visible === true) {
-            this.toggleSidebar()
+
+        }
+        if (this.state.movingQuote) {
+          var newQuote = {
+            id: this.state.quoteToMove.id,
+            page_id: this.state.page_id,
           }
+          this.putEditedQuote(newQuote, this.state.page_id)
+        }
+        if (this.state.visible === true) {
+          this.toggleSidebar()
         }
       })
     }
@@ -169,14 +183,6 @@ class PageMain extends Component {
             console.log("about to construct page ", this.state.month, this.state.day)
           //else, if the page does not exist yet, construct an object for that page
             this.constructNewPage()
-          }
-
-          if (this.state.movingQuote) {
-            var newQuote = {
-              id: this.state.quoteToMove.id,
-              page_id: page.id,
-            }
-            this.putEditedQuote(newQuote, page.id)
           }
         })
       this.setState({loadingStatus: false})
