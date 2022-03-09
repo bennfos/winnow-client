@@ -105,7 +105,6 @@ class EditQuoteModal extends Component {
                         </ModalBody>
                     <ModalFooter>
                         <Button primary onClick={this.editExistingQuote}>save</Button>
-                        <Button secondary onClick={this.MoveToNewPage}>move</Button>
                         <Button onClick={this.toggle}>cancel</Button>
                     </ModalFooter>
                 </Modal>
