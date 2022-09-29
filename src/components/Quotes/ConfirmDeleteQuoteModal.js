@@ -26,11 +26,10 @@ class ConfirmDeleteQuoteModal extends Component {
             <>
               <Icon
                   className="delete__icon"
-                  name="trash alternate"
+                  name="trash alternate outline"
                   onClick={this.toggle}
               >
               </Icon>
-
               <div>
                   <Modal
                       isOpen={this.state.modal}

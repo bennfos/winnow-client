@@ -28,14 +28,12 @@ class ConfirmDeleteBookModal extends Component {
     render(){
         return(
             <>
-                <section>
                     <Icon
                       className="delete__icon"
                       name="trash alternate outline"
                       onClick={this.toggle}
                     >
                     </Icon>
-                </section>
                 <div>
                     <Modal
                         isOpen={this.state.modal}

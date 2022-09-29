@@ -26,7 +26,10 @@ class PageMain extends Component {
       thought: "",
       starts_blank: false,
       monthOptions: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
-      loadingStatus: false
+      loadingStatus: false,
+      sidebarDirection: "top",
+      sidebarHorizontal: "true",
+      sidebarVertical: false
     }
 
     toggleSidebar = () => {
@@ -39,7 +42,14 @@ class PageMain extends Component {
 
     toggleSidebarToMoveQuote = (quote) => {
       if (this.state.visible === false) {
-        this.setState({ visible: true, movingQuote: true, quoteToMove: quote })
+        this.setState({
+          visible: true,
+          movingQuote: true,
+          quoteToMove: quote,
+          sidebarDirection: "right",
+          sidebarHorizontal: "false",
+          sidebarVertical: true
+         })
       } else {
         this.setState({ visible: false })
       }
@@ -268,6 +278,26 @@ class PageMain extends Component {
         })
     }
 
+    moveSidebarToSide = () => {
+        console.log("movingg to side")
+        this.setState({
+          sidebarDirection: "right",
+          sidebarHorizontal: "false",
+          sidebarVertical: true
+        })
+      }
+
+
+    moveSidebarToTop = () => {
+      console.log("movingg to top")
+        this.setState({
+          sidebarDirection: "top",
+          sidebarHorizontal: "true",
+          sidebarVertical: false
+        })
+    }
+
+
     componentDidMount () {
         BookDataManager.getBook(this.props.book_id)
             .then(book => {
@@ -279,6 +309,7 @@ class PageMain extends Component {
 
     render() {
         const { visible } = this.state
+        let triggerTime;
         return (
         <>
             <div className="pageSelect">
@@ -288,6 +319,17 @@ class PageMain extends Component {
                   fixed="top"
                   inverted
                   color="grey"
+                  onClick={(e) => {
+                    if (triggerTime > 1000) this.moveSidebarToSide()
+                    else this.moveSidebarToTop();
+                  }}
+                  onMouseDown={() => {
+                    triggerTime = new Date().getTime();
+                  }}
+                  onMouseUp={() => {
+                    let thisMoment = new Date().getTime();
+                    triggerTime = thisMoment - triggerTime;
+                  }}
                 >
                   <Menu.Item
                     onClick={this.toggleSidebar}
@@ -297,51 +339,51 @@ class PageMain extends Component {
                 </Menu>
             <div className="spacer"></div>
             <Sidebar.Pushable animation='push'>
-                <div className="sidebar">
+              <div className="sidebar">
                 <Sidebar
                     as={Menu}
                     color="grey"
                     animation='push'
                     icon='labeled'
                     inverted
-                    horizontal="true"
-                    direction='top'
+                    vertical={this.state.sidebarVertical}
+                    horizontal={this.state.sidebarHorizontal}
+                    direction={this.state.sidebarDirection}
                     visible={visible}
                     className="sidebar__menu"
                 >
-                {this.state.monthOptions.map(monthSelect => (
-                  <PageSelect
-                    key={monthSelect}
-                    setMonth={this.setMonth}
-                    toggleSidebar={this.toggleSidebar}
-                    toggle={this.toggle}
-                    handleFieldChange={this.handleFieldChange}
-                    handlePageSelect={this.handlePageSelect}
-                    monthSelect={monthSelect}
-                    day={this.state.day}
-                    {...this.props}
-                  />
-                ))}
+                  {this.state.monthOptions.map(monthSelect => (
+                    <PageSelect
+                      key={monthSelect}
+                      setMonth={this.setMonth}
+                      toggleSidebar={this.toggleSidebar}
+                      toggle={this.toggle}
+                      handleFieldChange={this.handleFieldChange}
+                      handlePageSelect={this.handlePageSelect}
+                      monthSelect={monthSelect}
+                      day={this.state.day}
+                      {...this.props}
+                    />
+                  ))}
 
-            </Sidebar>
-
-            </div>
-            <Sidebar.Pusher className="sidebar__pusher" dimmed={this.state.visible}>
-              <PageViews
-                thought={this.state.thought}
-                toggleSidebar={this.toggleSidebar}
-                toggleSidebarToMoveQuote={this.toggleSidebarToMoveQuote}
-                putEditedQuote={this.putEditedQuote}
-                addQuote={this.addQuote}
-                removeQuote={this.removeQuote}
-                putThought={this.putThought}
-                renderThought={this.renderThought}
-                renderPageQuotes={this.renderPageQuotes}
-                quotes={this.state.quotes}
-                changeMonthAndDay={this.changeMonthAndDay}
-                {...this.props}
-              />
-            </Sidebar.Pusher>
+                </Sidebar>
+              </div>
+              <Sidebar.Pusher className="sidebar__pusher" dimmed={this.state.visible}>
+                <PageViews
+                  thought={this.state.thought}
+                  toggleSidebar={this.toggleSidebar}
+                  toggleSidebarToMoveQuote={this.toggleSidebarToMoveQuote}
+                  putEditedQuote={this.putEditedQuote}
+                  addQuote={this.addQuote}
+                  removeQuote={this.removeQuote}
+                  putThought={this.putThought}
+                  renderThought={this.renderThought}
+                  renderPageQuotes={this.renderPageQuotes}
+                  quotes={this.state.quotes}
+                  changeMonthAndDay={this.changeMonthAndDay}
+                  {...this.props}
+                />
+              </Sidebar.Pusher>
             </Sidebar.Pushable>
 
             </div>

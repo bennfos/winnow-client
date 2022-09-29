@@ -44,14 +44,14 @@ align-content: center;
     justify-content: space-evenly;
 }
 
-.editAndDeleteBook {
+.editAndDelete {
+  align-items: center;
   display: flex;
-  flex-direction: row;
-  justify-self: flex-end;
-  margin: 40px 0 0 0;
+  justify-content: center;
+  margin-top: 150px;
 }
 
-.deleteBook {
+.delete {
   align-self: center;
   justify-self: center;
 }

@@ -126,14 +126,14 @@ class BookCard extends Component {
           <h4><em>{this.props.book.description}</em></h4>
         </div>
         <Fade in={this.state.visible}>
-          <div className="editAndDeleteBook">
-            <div className="editBook">
+          <div className="editAndDelete">
+            <div className="edit">
               <EditBookModal
                 {...this.props}
                 putEditedBook={this.props.putEditedBook}
               />
             </div>
-            <div className="deleteBook">
+            <div className="delete">
               <ConfirmBookDeleteModal {...this.props}/>
             </div>
           </div>
