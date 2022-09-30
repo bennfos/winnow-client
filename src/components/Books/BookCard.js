@@ -117,7 +117,6 @@ class BookCard extends Component {
   render() {
 
     return (
-
       <div className="bookCard" onClick={this.handleOpenBook}>
         <div className="bookCard__title" >
           <h2>{this.props.book.title}</h2>
@@ -126,14 +125,14 @@ class BookCard extends Component {
           <h4><em>{this.props.book.description}</em></h4>
         </div>
         <Fade in={this.state.visible}>
-          <div className="editAndDelete">
+          <div className="editAndDeleteBook">
             <div className="edit">
               <EditBookModal
                 {...this.props}
                 putEditedBook={this.props.putEditedBook}
               />
             </div>
-            <div className="delete">
+            <div className="deleteBook">
               <ConfirmBookDeleteModal {...this.props}/>
             </div>
           </div>

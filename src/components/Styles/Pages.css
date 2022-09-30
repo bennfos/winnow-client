@@ -85,8 +85,10 @@ h1 {
     margin: 20px 0 0 0;
 }
 
-.quoteCard {
+.quoteCards {
     margin: 20px 0;
+    overflow-y: auto;
+    max-height: 320px;
 }
 
 .thoughtList {

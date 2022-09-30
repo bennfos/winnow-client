@@ -3,6 +3,7 @@ import QuoteCard from './QuoteCard'
 import AddQuoteModal from './AddQuoteModal'
 import AddRandomQuoteModal from './AddRandomQuoteModal'
 import { Icon } from 'semantic-ui-react'
+import { Fade } from 'reactstrap'
 import '../Styles/Pages.css'
 
 class QuoteList extends Component {
@@ -11,6 +12,12 @@ class QuoteList extends Component {
     months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
     visible: false,
     fadeIn: true
+  }
+
+  toggleVisibility = () => {
+    this.setState(prevState => ({
+        visible: !prevState.visible
+    }));
   }
 
   daysOfMonth = (month) => {
@@ -70,6 +77,9 @@ class QuoteList extends Component {
       this.setState({
         daysOfMonth: this.daysOfMonth(this.props.month)
       })
+      if (this.props.editMode === true) {
+        this.toggleVisibility()
+      }
     }
 
 //When component receives new page_id in props (i.e., page is changed) from PageMain, update state in PageMain to cause a rerender of QuoteList
@@ -79,6 +89,9 @@ class QuoteList extends Component {
           daysOfMonth: this.daysOfMonth(this.props.month)
         })
         this.props.renderPageQuotes(this.props.page_id)
+      }
+      if (this.props.editMode !== prevProps.editMode) {
+        this.toggleVisibility();
       }
     }
 
@@ -93,19 +106,23 @@ class QuoteList extends Component {
             </div>
             <div className="quoteList__header">
               <div className="quoteList__page">
-                <Icon
-                  onClick={() => {
-                    this.changeDay("prev")
-                  }}
-                  name="angle left">
-                </Icon>
+                <Fade in={this.state.visible}>
+                  <Icon
+                    onClick={() => {
+                      this.changeDay("prev")
+                    }}
+                    name="angle left">
+                  </Icon>
+                </Fade>
                 <h1>{this.props.month} {this.props.day}</h1>
-                <Icon
-                  onClick={() => {
-                    this.changeDay("next")
-                  }}
-                  name="angle right">
-                </Icon>
+                <Fade in={this.state.visible}>
+                  <Icon
+                    onClick={() => {
+                      this.changeDay("next")
+                    }}
+                    name="angle right">
+                  </Icon>
+                </Fade>
               </div>
               <div className="addQuoteModal">
 
@@ -113,7 +130,7 @@ class QuoteList extends Component {
                   {...this.props}/>
               </div>
             </div>
-            <div className="quoteCard">
+            <div className="quoteCards">
               {this.props.quotes.map(quote => (
                 <QuoteCard
                   key={quote.id}

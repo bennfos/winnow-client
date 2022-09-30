@@ -30,7 +30,7 @@ class AddQuoteModal extends Component {
       this.setState(prevState => ({
           visible: !prevState.visible
       }));
-  }
+    }
 
 //Sets state with input values as fields change
     handleFieldChange = evt => {

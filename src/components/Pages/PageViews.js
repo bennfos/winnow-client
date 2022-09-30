@@ -1,8 +1,6 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import PageDay from './PageDay'
-import Auth from '../Auth/Auth'
-//import './PageMain.css'
 
 
 export default class PageViews extends Component {

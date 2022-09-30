@@ -44,16 +44,16 @@ align-content: center;
     justify-content: space-evenly;
 }
 
-.editAndDelete {
-  align-items: center;
+.editAndDeleteBook {
   display: flex;
   justify-content: center;
   margin-top: 150px;
 }
 
-.delete {
+.deleteBook {
+  display: flex;
+  flex-direction: row;
   align-self: center;
-  justify-self: center;
 }
 
 .ellipses {
